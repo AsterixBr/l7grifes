@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-if (!empty($_POST) AND (empty($_POST['login']) OR empty($_POST['senha']))) {
+if (!empty($_POST) AND (empty($_POST['email']) OR empty($_POST['senha']))) {
 	//redireciona para a página inicial.
 	header("Location: ../sessionDestroy.php"); exit;
 }
@@ -10,7 +10,7 @@ require_once "C:/xampp/htdocs/l7grifes/model/Mensagem.php";
 require_once "C:/xampp/htdocs/l7grifes/model/Pessoa.php";
 
 if(isset($_POST)){
-    $login = $_POST['login'];
+    $login = $_POST['email'];
     $senha = $_POST['senha'];
 }else{
     header("Location: ../sessionDestroy.php"); exit;
@@ -19,12 +19,12 @@ if(isset($_POST)){
 $daoLogin = new DaoLogin();
 
 $resp = new Pessoa();
-$resp = $daoLogin->validarLogin($login, $senha);
+$resp = $daoLogin->validarLogin($email, $senha);
 //echo gettype($resp);
 
 if(gettype($resp) == "object"){
-    if(!isset($_SESSION['login'])){
-        $_SESSION['loginp'] = $resp->getPerfil();
+    if(!isset($_SESSION['email'])){
+        $_SESSION['email'] = $resp->getemail();
         $_SESSION['idp'] = $resp->getIdpessoa();
         $_SESSION['nomep'] = $resp->getNome();
         $_SESSION['perfilp'] = $resp->getPerfil();
@@ -39,8 +39,8 @@ if(gettype($resp) == "object"){
     }
 }else{
     $_SESSION['msg'] = $resp;
-    if(isset($_SESSION['loginp'])){
-        $_SESSION['loginp'] = null;
+    if(isset($_SESSION['email'])){
+        $_SESSION['email'] = null;
         $_SESSION['idp'] = null;
         $_SESSION['nomep'] = null;
         $_SESSION['perfilp'] = null;

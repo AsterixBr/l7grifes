@@ -77,7 +77,7 @@ class DaoPessoa {
 
                     //processo para inserir dados de pessoa
                     $stmt = $conecta->prepare("insert into pessoa values "
-                        . "(null,?,?,?,md5(?),?,?,?)");
+                        . "(null,?,?,?,md5(?),'cliente',?,?)");
                     $stmt->bindParam(1, $nome);
                     $stmt->bindParam(2, $dtNascimento);
                     $stmt->bindParam(3, $email);
@@ -173,7 +173,7 @@ class DaoPessoa {
                     . "dtNascimento = ?, "
                     . "email = ?, "
                     . "senha = md5(?), "
-                    . "perfil = ?, "
+                    . "perfil = 'cliente', "
                     . "cpf = ?, "
                     . "fkendereco = ? "
                     . "where idPessoa = ?");
@@ -272,7 +272,7 @@ class DaoPessoa {
     }
 
     //método para os dados de produto por id
-    public function pesquisarPessoaIdDAO($id)
+    public function pesquisarClienteIdDAO($id)
     {
         $conn = new Conecta();
         $conecta = $conn->conectadb();
