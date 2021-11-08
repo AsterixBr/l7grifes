@@ -1,12 +1,12 @@
 <?php
-include_once 'C:/xampp/htdocs/l7grifes/Controller/PessoaController.php';
-include_once 'C:/xampp/htdocs/l7grifes/model/Pessoa.php';
+include_once 'C:/xampp/htdocs/l7grifes/Controller/ClienteController.php';
+include_once 'C:/xampp/htdocs/l7grifes/model/Cliente.php';
 include_once 'C:/xampp/htdocs/l7grifes/model/Endereco.php';
 include_once 'C:/xampp/htdocs/l7grifes/model/Mensagem.php';
 $msg = new Mensagem();
 $en = new Endereco();
-$pe = new Pessoa();
-$pe->setFkendereco($en);
+$cli = new Cliente();
+$cli->setFkendereco($en);
 $btEnviar = FALSE;
 $btAtualizar = FALSE;
 $btExcluir = FALSE;
@@ -83,7 +83,7 @@ $btExcluir = FALSE;
                 <div class="card-body border">
                     <?php
                     //envio dos dados para o BD
-                    if (isset($_POST['cadastrarPessoa'])) {
+                    if (isset($_POST['cadastrarCliente'])) {
                         $nome = trim($_POST['nome']);
                         if ($nome != "") {
                             $dtNascimento = $_POST['dtNascimento'];
@@ -98,9 +98,9 @@ $btExcluir = FALSE;
                             $cidade = $_POST['cidade'];
                             $uf = $_POST['uf'];
 
-                            $fc = new PessoaController();
-                            unset($_POST['cadastrarPessoa']);
-                            $msg = $fc->inserirPessoa(
+                            $clic = new ClienteController();
+                            unset($_POST['cadastrarCliente']);
+                            $msg = $clic->inserirCliente(
                                 $cep,
                                 $logradouro,
                                 $numero,
@@ -116,12 +116,12 @@ $btExcluir = FALSE;
                             );
                             echo $msg->getMsg();
                             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                    URL='cadastro.php'\">";
+                                    URL='cadastroCliente.php'\">";
                         }
                     }
 
                     //método para atualizar dados do produto no BD
-                    if (isset($_POST['atualizarPessoa'])) {
+                    if (isset($_POST['atualizarCliente'])) {
                         $idPessoa = trim($_POST['idPessoa']);
                         if ($idPessoa != "") {
                             $nome = $_POST['nome'];
@@ -137,9 +137,9 @@ $btExcluir = FALSE;
                             $cidade = $_POST['cidade'];
                             $uf = $_POST['uf'];
 
-                            $fc = new PessoaController();
-                            unset($_POST['atualizarPessoa']);
-                            $msg = $fc->atualizarPessoa(
+                            $pcliente = new ClienteController();
+                            unset($_POST['atualizarCliente']);
+                            $msg = $pcliente->atualizarCliente(
                                 $idPessoa,
                                 $cep,
                                 $logradouro,
@@ -156,47 +156,47 @@ $btExcluir = FALSE;
                             );
                             echo $msg->getMsg();
                             /*echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                    URL='cadastro.php'\">";*/
+                                    URL='cadastroCliente.php'\">";*/
                         }
                     }
 
                     if (isset($_POST['excluir'])) {
-                        if ($pe != null) {
+                        if ($cli != null) {
                             $id = $_POST['ide'];
 
-                            $fc = new PessoaController();
+                            $clic = new ClienteController();
                             unset($_POST['excluir']);
-                            $msg = $fc->excluirPessoa($id);
+                            $msg = $clic->excluirCliente($id);
                             echo $msg->getMsg();
                             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                    URL='cadastro.php'\">";
+                                    URL='cadastroCliente.php'\">";
                         }
                     }
 
-                    if (isset($_POST['excluirPessoa'])) {
-                        if ($pe != null) {
+                    if (isset($_POST['excluirCliente'])) {
+                        if ($cli != null) {
                             $id = $_POST['idPessoa'];
-                            unset($_POST['excluirPessoa']);
-                            $fc = new PessoaController();
-                            $msg = $fc->excluirPessoa($id);
+                            unset($_POST['excluirCliente']);
+                            $clic = new ClienteController();
+                            $msg = $clic->excluirCliente($id);
                             echo $msg->getMsg();
                             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                    URL='cadastro.php'\">";
+                                    URL='cadastroCliente.php'\">";
                         }
                     }
 
                     if (isset($_POST['limpar'])) {
                         $pe = null;
                         unset($_GET['id']);
-                        header("Location: cadastro.php");
+                        header("Location: cadastroCliente.php");
                     }
                     if (isset($_GET['id'])) {
                         $btEnviar = TRUE;
                         $btAtualizar = TRUE;
                         $btExcluir = TRUE;
                         $id = $_GET['id'];
-                        $pc = new PessoaController();
-                        $pe = $pc->pesquisarPessoaId($id);
+                        $clic = new ClienteController($id);
+                        $cli = $clic->pesquisarClienteId($id);
                     }
                     ?>
 
@@ -205,42 +205,42 @@ $btExcluir = FALSE;
                             <div class="col-md-12">
                                 <strong>Código: <label style="color:red;">
                                         <?php
-                                        if ($pe != null) {
-                                            echo $pe->getIdpessoa();
+                                        if ($cli != null) {
+                                            echo $cli->getIdpessoa();
                                         ?>
                                     </label></strong>
-                                <input type="hidden" name="idPessoa" value="<?php echo $pe->getIdpessoa(); ?>"><br>
+                                <input type="hidden" name="idPessoa" value="<?php echo $cli->getIdpessoa(); ?>"><br>
                             <?php
                                         }
                             ?>
                             <label>Nome Completo</label>
-                            <input class="form-control" type="text" name="nome" value="<?php echo $pe->getNome(); ?>">
+                            <input class="form-control" type="text" name="nome" value="<?php echo $cli->getNome(); ?>">
                             <label>Data de Nascimento</label>
-                            <input class="form-control" type="date" name="dtNascimento" value="<?php echo $pe->getdtNascimento(); ?>">
+                            <input class="form-control" type="date" name="dtNascimento" value="<?php echo $cli->getdtNascimento(); ?>">
                             <label>CPF</label>
                             <label id="valCpf" style="color: red; font-size: 11px;"></label>
                             <input class="form-control" type="text" id="cpf" onkeypress="mascara(this, '###.###.###-##')" maxlength="14" onblur="return validaCpfCnpj();" name="cpf">
                             <label>E-Mail</label>
-                            <input class="form-control" type="email" name="email" value="<?php echo $pe->getEmail(); ?>">
+                            <input class="form-control" type="email" name="email" value="<?php echo $cli->getEmail(); ?>">
                             <label>Senha</label>
                             <input class="form-control" type="password" name="senha">
                             <label>Conf. Senha</label>
                             <input class="form-control" type="password" name="senha2">
                             <label>CEP</label><br>
-                            <input class="form-control" type="text" id="cep" onkeypress="mascara(this, '#####-###')" maxlength="9" value="<?php echo $pe->getFkendereco()->getCep(); ?>" name="cep">
+                            <input class="form-control" type="text" id="cep" onkeypress="mascara(this, '#####-###')" maxlength="9" value="<?php echo $cli->getFkendereco()->getCep(); ?>" name="cep">
                             <label>Logradouro</label>
-                            <input type="text" class="form-control" name="logradouro" id="rua" value="<?php echo $pe->getFkEndereco()->getLogradouro(); ?>">
+                            <input type="text" class="form-control" name="logradouro" id="rua" value="<?php echo $cli->getFkEndereco()->getLogradouro(); ?>">
                             <label>Numero</label>
-                            <input type="text" class="form-control" name="numero" id="numero" value="<?php echo $pe->getFkEndereco()->getNumero(); ?>">
+                            <input type="text" class="form-control" name="numero" id="numero" value="<?php echo $cli->getFkEndereco()->getNumero(); ?>">
                             <label>Complemento</label>
-                            <input type="text" class="form-control" name="complemento" id="complemento" value="<?php echo $pe->getFkEndereco()->getComplemento(); ?>">
+                            <input type="text" class="form-control" name="complemento" id="complemento" value="<?php echo $cli->getFkEndereco()->getComplemento(); ?>">
 
                             <label>Bairro</label>
-                            <input type="text" class="form-control" name="bairro" id="bairro" value="<?php echo $pe->getFkEndereco()->getBairro(); ?>">
+                            <input type="text" class="form-control" name="bairro" id="bairro" value="<?php echo $cli->getFkEndereco()->getBairro(); ?>">
                             <label>Cidade</label>
-                            <input type="text" class="form-control" name="cidade" id="cidade" value="<?php echo $pe->getFkEndereco()->getCidade(); ?>">
+                            <input type="text" class="form-control" name="cidade" id="cidade" value="<?php echo $cli->getFkEndereco()->getCidade(); ?>">
                             <label>UF</label>
-                            <input type="text" class="form-control" name="uf" id="uf" value="<?php echo $pe->getFkEndereco()->getUf(); ?>" maxlength="100">
+                            <input type="text" class="form-control" name="uf" id="uf" value="<?php echo $cli->getFkEndereco()->getUf(); ?>" maxlength="100">
                             </div>
 
                             <div class="col-md-12">

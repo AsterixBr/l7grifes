@@ -78,7 +78,7 @@ $btExcluir = FALSE;
             <div class="col-md-4">
 
                 <div class="card-header bg-dark text-center text-white border" style="padding-bottom: 15px; padding-top: 15px;">
-                    Cadastro de Cliente
+                    Cadastro de Funcionário
                 </div>
                 <div class="card-body border">
                     <?php

@@ -1,6 +1,6 @@
 <?php
-include_once 'C:/xampp/htdocs/l7grifes/Dao/DaoPessoa.php';
-include_once 'C:/xampp/htdocs/l7grifes/model/Pessoa.php';
+include_once 'C:/xampp/htdocs/l7grifes/Dao/DaoCliente.php';
+include_once 'C:/xampp/htdocs/l7grifes/model/Cliente.php';
 
 class ClienteController {
     
@@ -27,7 +27,7 @@ class ClienteController {
 
         
         $daoCliente = new DaoCliente();
-        return $daoCliente->inserir($Cliente);
+        return $daoCliente->inserir($cliente);
     }
     
     //método para atualizar dados de produto no BD
@@ -61,13 +61,13 @@ class ClienteController {
     //método para carregar a lista de produtos que vem da DAO
     public function listarcliente(){
         $daoCliente = new DaoCliente();
-        return $daoCliente->listarClienteDAO();
+        return $daoCliente->listarclientesDAO();
     }
     
     //método para excluir produto
     public function excluirCliente($id){
-        $daoCliente = new DaoCliente();
-        return $daoCliente->excluirClienteDAO($id);
+        $cliente = new Daocliente();
+        return $cliente->excluirClienteDAO($id);
     }
     
     //método para retornar objeto produto com os dados do BD
