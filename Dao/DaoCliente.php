@@ -27,7 +27,7 @@ class Daocliente {
             $cep = $cliente->getFkEndereco()->getCep();
 
 
-            echo ("$nome, $cpf, $dtNascimento, $email, $senha,$logradouro, $numero, $complemento, $bairro, $cidade, $uf, $cep");
+            //echo ("$nome, $cpf, $dtNascimento, $email, $senha,$logradouro, $numero, $complemento, $bairro, $cidade, $uf, $cep");
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 //processo para pegar o idendereco da tabela endereco, conforme 

@@ -75,7 +75,7 @@ $btExcluir = FALSE;
 
     <div class="container-fluid">
         <div class="row" style="margin-top: 30px;">
-            <div class="col-md-12">
+            <div class="col-md-6">
 
                 <div class="card-header bg-dark text-center text-white border" style="padding-bottom: 15px; padding-top: 15px;">
                     Cadastro de Cliente
@@ -219,7 +219,8 @@ $btExcluir = FALSE;
                             <input class="form-control" type="date" name="dtNascimento" value="<?php echo $cli->getdtNascimento(); ?>">
                             <label>CPF</label>
                             <label id="valCpf" style="color: red; font-size: 11px;"></label>
-                            <input class="form-control" type="text" id="cpf" onkeypress="mascara(this, '###.###.###-##')" maxlength="14" onblur="return validaCpfCnpj();" name="cpf">
+                            <input class="form-control" type="text" id="cpf" onkeypress="mascara(this, '###.###.###-##')" maxlength="14"
+                             onblur="return validaCpfCnpj();" name="cpf">
                             <label>E-Mail</label>
                             <input class="form-control" type="email" name="email" value="<?php echo $cli->getEmail(); ?>">
                             <label>Senha</label>
@@ -246,7 +247,7 @@ $btExcluir = FALSE;
                             <div class="col-md-12">
                                 <br>
                                 <div>
-                                    <input type="submit" name="cadastrarPessoa" class="btn btn-success btInput" value="Enviar" <?php if ($btEnviar == TRUE) echo "disabled"; ?>>
+                                    <input type="submit" name="cadastrarCliente" class="btn btn-success btInput" value="Enviar" <?php if ($btEnviar == TRUE) echo "disabled"; ?>>
                                     <input type="submit" class="btn btn-light btInput" name="limpar" value="Limpar">
                                 </div>
                             </div>
