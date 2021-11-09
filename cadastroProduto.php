@@ -53,13 +53,13 @@ $btExcluir = FALSE;
       <div class="navbar-collapse collapse show" id="navbarCollapse" style>
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a href="#" class="nav-link">Produtos</a>
+            <a href="Produtos.php" class="nav-link">Produtos</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Carrinho</a>
+            <a href="Carrinho.php" class="nav-link">Carrinho</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link"></a>
+            <a href="#" class="nav-link">Painel de Controle</a>
           </li>
         </ul>
         <div>

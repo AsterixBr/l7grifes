@@ -1,5 +1,5 @@
 <?php
-require_once 'C:/xampp/htdocs/l7grifes/bd/Conecta.php';
+require_once 'C:/xampp/htdocs/l7grifes/DataBase/Conecta.php';
 require_once 'C:/xampp/htdocs/l7grifes/model/Mensagem.php';
 require_once 'C:/xampp/htdocs/l7grifes/model/Pessoa.php';
 
@@ -23,7 +23,7 @@ class DaoLogin
                         while ($linha = $st->fetch(PDO::FETCH_OBJ)) {
                             $pessoa->setIdpessoa($linha->idPessoa);
                             $pessoa->setNome($linha->nome);
-                            // $pessoa->setLogin($linha->login);
+                            //$pessoa->setLogin($linha->login);
                             $pessoa->setPerfil($linha->perfil);
                         }
                         return $pessoa;
@@ -44,9 +44,9 @@ class DaoLogin
 
     public function login($email, $senha)
     {
-        $conexao = new Conexao();
-        $conexao = $conexao->conexao();
-        $stmt = $conexao->prepare("SELECT cpf, email, senha, nome FROM cliente WHERE email = :email AND senha = :senha");
+        $Conecta = new Conecta();
+        $Conecta = $Conecta->Conectadb();
+        $stmt = $Conecta->prepare("SELECT cpf, email, senha, nome FROM cliente WHERE email = :email AND senha = :senha");
         $stmt->execute(array('email' => $email, 'senha' => $senha));
         if ($stmt->rowcount() > 0) {
             $result = $stmt->fetch();

@@ -17,7 +17,7 @@ $btExcluir = FALSE;
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Formulário</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
@@ -44,38 +44,27 @@ $btExcluir = FALSE;
     </header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
         <div class="container-fluid">
-            <a href="#" class="navbar-brand">L7 Grifes</a>
+            <a href="L7grifes.html" class="navbar-brand">L7 Grifes</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse show" id="navbarCollapse" style>
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Produtos</a>
+                        <a href="Produtos.php" class="nav-link">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Carrinho</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Contato</a>
+                        <a href="Carrinho.php" class="nav-link">Carrinho</a>
                     </li>
                 </ul>
-                <div>
-                    <a href="#" class="animated-button1">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        LOGIN/CADASTRO
-                    </a>
-                </div>
+            
             </div>
         </div>
     </nav>
 
     <div class="container-fluid">
         <div class="row" style="margin-top: 30px;">
-            <div class="col-md-6">
+            <div class="col-md-6 offset-md-3">
 
                 <div class="card-header bg-dark text-center text-white border" style="padding-bottom: 15px; padding-top: 15px;">
                     Cadastro de Cliente
@@ -246,7 +235,7 @@ $btExcluir = FALSE;
 
                             <div class="col-md-12">
                                 <br>
-                                <div>
+                                <div class="offset-md-5">
                                     <input type="submit" name="cadastrarCliente" class="btn btn-success btInput" value="Enviar" <?php if ($btEnviar == TRUE) echo "disabled"; ?>>
                                     <input type="submit" class="btn btn-light btInput" name="limpar" value="Limpar">
                                 </div>
