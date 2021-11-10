@@ -143,9 +143,20 @@ $btExcluir = FALSE;
                             $fc = new PessoaController();
                             unset($_POST['atualizarPessoa']);
                             $msg = $fc->atualizarPessoa(
-                                $idPessoa, $cep, $logradouro, 
-                                $numero, $complemento, $bairro, $cidade, $uf,
-                                $nome, $dtNascimento, $email, $senha, $perfil, $cpf
+                                $idPessoa,
+                                $cep,
+                                $logradouro,
+                                $numero,
+                                $complemento,
+                                $bairro,
+                                $cidade,
+                                $uf,
+                                $nome,
+                                $dtNascimento,
+                                $email,
+                                $senha,
+                                $perfil,
+                                $cpf
                             );
                             echo $msg->getMsg();
                             /*echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
@@ -211,14 +222,12 @@ $btExcluir = FALSE;
                             <label>Data de Nascimento</label>
                             <input class="form-control" type="date" name="dtNascimento" value="<?php echo $pe->getdtNascimento(); ?>">
                             <label>CPF</label>
-                            <label id="valCpf" style="color: red; font-size: 11px;"></label>
+                            <label id="valCpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite o CPF no formato 000.000.000-00" style="color: red; font-size: 11px;"></label>
                             <input class="form-control" type="text" id="cpf" onkeypress="mascara(this, '###.###.###-##')" maxlength="14" onblur="return validaCpfCnpj();" name="cpf">
                             <label>E-Mail</label>
-                            <input class="form-control" type="email" name="email" value="<?php echo $pe->getEmail(); ?>">
+                            <input class="form-control" pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" type="email" name="email" value="<?php echo $pe->getEmail(); ?>">
                             <label>Senha</label>
-                            <input class="form-control" type="password" name="senha">
-                            <label>Conf. Senha</label>
-                            <input class="form-control" type="password" name="senha2">
+                            <input class="form-control" pattern="^.{6,15}$" type="password" name="senha" title="Senha com no minímo 6 caracteres de letras e números" placeholder="Senha com no minímo 6 caracteres de letras e números">
                             <label>CEP</label><br>
                             <input class="form-control" type="text" id="cep" onkeypress="mascara(this, '#####-###')" maxlength="9" value="<?php echo $pe->getFkendereco()->getCep(); ?>" name="cep">
                             <label>Logradouro</label>
@@ -227,7 +236,6 @@ $btExcluir = FALSE;
                             <input type="text" class="form-control" name="numero" id="numero" value="<?php echo $pe->getFkEndereco()->getNumero(); ?>">
                             <label>Complemento</label>
                             <input type="text" class="form-control" name="complemento" id="complemento" value="<?php echo $pe->getFkEndereco()->getComplemento(); ?>">
-
                             <label>Bairro</label>
                             <input type="text" class="form-control" name="bairro" id="bairro" value="<?php echo $pe->getFkEndereco()->getBairro(); ?>">
                             <label>Cidade</label>
@@ -446,138 +454,100 @@ $btExcluir = FALSE;
             });
         </script>
         <script>
-            function validaCpfCnpj() {
-                var val = document.getElementById("cpf").value;
-                if (val.length == 14) {
-                    var cpf = val.trim();
+         function validar(obj) { // recebe um objeto
+    var s = (obj.value).replace(/\D/g, '');
+    var tam = (s).length; // removendo os caracteres nãoo numéricos
+    if (!(tam == 11 || tam == 14 || tam == 0)) { // validando o tamanho
+        alert("'" + s + "' Não é um CPF ou um CNPJ Válido!"); // tamanho inválido
+        obj.focus();
+        return false;
+    }
 
-                    cpf = cpf.replace(/\./g, '');
-                    cpf = cpf.replace('-', '');
-                    cpf = cpf.split('');
+// se for CPF
+    if (tam == 11) {
+        if (!validaCPF(s)) { // chama a função que valida o CPF
+            alert("'" + s + "' Não é um CPF Válido!"); // se quiser mostrar o erro
+            obj.select(); // se quiser selecionar o campo em questão
+            obj.focus();
+            return false;
+        }
+        obj.value = maskCPF(s); // se validou o CPF mascaramos corretamente
+        return true;
+    }
 
-                    var v1 = 0;
-                    var v2 = 0;
-                    var aux = false;
+// se for CNPJ
+    if (tam == 14) {
+        if (!validaCNPJ(s)) { // chama a função que valida o CNPJ
+            alert("'" + s + "' Não é um CNPJ Válido!"); // se quiser mostrar o erro
+            obj.select(); // se quiser selecionar o campo enviado
+            return false;
+        }
+        obj.value = maskCNPJ(s); // se validou o CNPJ mascaramos corretamente
+        return true;
+    }
+}
 
-                    for (var i = 1; cpf.length > i; i++) {
-                        if (cpf[i - 1] != cpf[i]) {
-                            aux = true;
-                        }
-                    }
+function validaCPF(s) {
+    var c = s.substr(0, 9);
+    var dv = s.substr(9, 2);
+    var d1 = 0;
+    for (var i = 0; i < 9; i++) {
+        d1 += c.charAt(i) * (10 - i);
+    }
+    if (d1 == 0)
+        return false;
+    d1 = 11 - (d1 % 11);
+    if (d1 > 9)
+        d1 = 0;
+    if (dv.charAt(0) != d1) {
+        return false;
+    }
+    d1 *= 2;
+    for (var i = 0; i < 9; i++) {
+        d1 += c.charAt(i) * (11 - i);
+    }
+    d1 = 11 - (d1 % 11);
+    if (d1 > 9)
+        d1 = 0;
+    if (dv.charAt(1) != d1) {
+        return false;
+    }
+    return true;
+}
 
-                    if (aux == false) {
-                        document.getElementById("valCpf").innerHTML = "* CPF inválido";
-                        return false;
-                    }
-
-                    for (var i = 0, p = 10;
-                        (cpf.length - 2) > i; i++, p--) {
-                        v1 += cpf[i] * p;
-                    }
-
-                    v1 = ((v1 * 10) % 11);
-
-                    if (v1 == 10) {
-                        v1 = 0;
-                    }
-
-                    if (v1 != cpf[9]) {
-                        document.getElementById("valCpf").innerHTML = "* CPF inválido";
-                        return false;
-                    }
-
-                    for (var i = 0, p = 11;
-                        (cpf.length - 1) > i; i++, p--) {
-                        v2 += cpf[i] * p;
-                    }
-
-                    v2 = ((v2 * 10) % 11);
-
-                    if (v2 == 10) {
-                        v2 = 0;
-                    }
-
-                    if (v2 != cpf[10]) {
-                        document.getElementById("valCpf").innerHTML = "* CPF inválido";
-                        return false;
-                    } else {
-                        document.getElementById("valCpf").innerHTML = "";
-                        return true;
-                    }
-                } else if (val.length == 18) {
-                    var cnpj = val.trim();
-
-                    cnpj = cnpj.replace(/\./g, '');
-                    cnpj = cnpj.replace('-', '');
-                    cnpj = cnpj.replace('/', '');
-                    cnpj = cnpj.split('');
-
-                    var v1 = 0;
-                    var v2 = 0;
-                    var aux = false;
-
-                    for (var i = 1; cnpj.length > i; i++) {
-                        if (cnpj[i - 1] != cnpj[i]) {
-                            aux = true;
-                        }
-                    }
-
-                    if (aux == false) {
-                        document.getElementById("valCpf").innerHTML = "* CPF inválido";
-                        return false;
-                    }
-
-                    for (var i = 0, p1 = 5, p2 = 13;
-                        (cnpj.length - 2) > i; i++, p1--, p2--) {
-                        if (p1 >= 2) {
-                            v1 += cnpj[i] * p1;
-                        } else {
-                            v1 += cnpj[i] * p2;
-                        }
-                    }
-
-                    v1 = (v1 % 11);
-
-                    if (v1 < 2) {
-                        v1 = 0;
-                    } else {
-                        v1 = (11 - v1);
-                    }
-
-                    if (v1 != cnpj[12]) {
-                        document.getElementById("valCpf").innerHTML = "* CPF inválido";
-                        return false;
-                    }
-
-                    for (var i = 0, p1 = 6, p2 = 14;
-                        (cnpj.length - 1) > i; i++, p1--, p2--) {
-                        if (p1 >= 2) {
-                            v2 += cnpj[i] * p1;
-                        } else {
-                            v2 += cnpj[i] * p2;
-                        }
-                    }
-
-                    v2 = (v2 % 11);
-
-                    if (v2 < 2) {
-                        v2 = 0;
-                    } else {
-                        v2 = (11 - v2);
-                    }
-
-                    if (v2 != cnpj[13]) {
-                        document.getElementById("valCpf").innerHTML = "* CPF inválido";
-                        return false;
-                    } else {
-                        document.getElementById("valCpf").innerHTML = "";
-                        return true;
-                    }
-                } else {
-                    document.getElementById("valCpf").innerHTML = "* CPF inválido";
-                    return false;
-                }
-            }
+function validaCNPJ(CNPJ) {
+    var a = new Array();
+    var b = new Number;
+    var c = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    for (i = 0; i < 12; i++) {
+        a[i] = CNPJ.charAt(i);
+        b += a[i] * c[i + 1];
+    }
+    if ((x = b % 11) < 2) {
+        a[12] = 0
+    } else {
+        a[12] = 11 - x
+    }
+    b = 0;
+    for (y = 0; y < 13; y++) {
+        b += (a[y] * c[y]);
+    }
+    if ((x = b % 11) < 2) {
+        a[13] = 0;
+    } else {
+        a[13] = 11 - x;
+    }
+    if ((CNPJ.charAt(12) != a[12]) || (CNPJ.charAt(13) != a[13])) {
+        return false;
+    }
+    return true;
+}
+function maskCPF(CPF) {
+    return CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "." + CPF.substring(6, 9) + "-" + CPF.substring(9, 11);
+}
+function maskCNPJ(CNPJ) {
+    return CNPJ.substring(0, 2) + "." + CNPJ.substring(2, 5) + "." + CNPJ.substring(5, 8) + "/" + CNPJ.substring(8, 12) + "-" + CNPJ.substring(12, 14);
+}
         </script>
 </body>
 

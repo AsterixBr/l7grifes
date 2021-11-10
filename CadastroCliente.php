@@ -57,7 +57,7 @@ $btExcluir = FALSE;
                         <a href="Carrinho.php" class="nav-link">Carrinho</a>
                     </li>
                 </ul>
-            
+
             </div>
         </div>
     </nav>
@@ -207,15 +207,12 @@ $btExcluir = FALSE;
                             <label>Data de Nascimento</label>
                             <input class="form-control" type="date" name="dtNascimento" value="<?php echo $cli->getdtNascimento(); ?>">
                             <label>CPF</label>
-                            <label id="valCpf" style="color: red; font-size: 11px;"></label>
-                            <input class="form-control" type="text" id="cpf" onkeypress="mascara(this, '###.###.###-##')" maxlength="14"
-                             onblur="return validaCpfCnpj();" name="cpf">
+                            <label id="valCpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite o CPF no formato 000.000.000-00" style="color: red; font-size: 11px;"></label>
+                            <input class="form-control" type="text" id="cpf" onkeypress="mascara(this, '###.###.###-##')" maxlength="14" onblur="return validaCpfCnpj();" name="cpf">
                             <label>E-Mail</label>
-                            <input class="form-control" type="email" name="email" value="<?php echo $cli->getEmail(); ?>">
+                            <input class="form-control" pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" type="email" name="email" value="<?php echo $cli->getEmail(); ?>">
                             <label>Senha</label>
-                            <input class="form-control" type="password" name="senha">
-                            <label>Conf. Senha</label>
-                            <input class="form-control" type="password" name="senha2">
+                            <input class="form-control" pattern="^.{6,15}$" type="password" name="senha" title="Senha com no minímo 6 caracteres de letras e números" placeholder="Senha com no minímo 6 caracteres de letras e números">
                             <label>CEP</label><br>
                             <input class="form-control" type="text" id="cep" onkeypress="mascara(this, '#####-###')" maxlength="9" value="<?php echo $cli->getFkendereco()->getCep(); ?>" name="cep">
                             <label>Logradouro</label>
@@ -224,7 +221,6 @@ $btExcluir = FALSE;
                             <input type="text" class="form-control" name="numero" id="numero" value="<?php echo $cli->getFkEndereco()->getNumero(); ?>">
                             <label>Complemento</label>
                             <input type="text" class="form-control" name="complemento" id="complemento" value="<?php echo $cli->getFkEndereco()->getComplemento(); ?>">
-
                             <label>Bairro</label>
                             <input type="text" class="form-control" name="bairro" id="bairro" value="<?php echo $cli->getFkEndereco()->getBairro(); ?>">
                             <label>Cidade</label>
