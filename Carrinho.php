@@ -60,7 +60,7 @@ if(isset($items[$idProduto])) {
 	$_SESSION['carrinho'][$idProduto]['quantidade']++;}else{
 		$_SESSION['carrinho'][$idProduto] = array('quantidade'=>1,'nome'=>$items[$idProduto]['nome'],'preco'=>$items[$idProduto]['preco']);
 	}
-	echo '<script>alert("O item foi adicionado ao carrinho.");</script>';
+	//echo '<script>alert("O item foi adicionado ao carrinho.");</script>';
 } else {
 	die("você não pode adicionar o produto que não exsite");
 }
@@ -68,7 +68,7 @@ if(isset($items[$idProduto])) {
  }
 
 ?>
-<h2 class="title">Carrinho:</h2>
+<h2>Carrinho:</h2>
 <?php
 foreach ($_SESSION['carrinho'] as $key => $value) {
 	//Nome do produto
@@ -76,7 +76,7 @@ foreach ($_SESSION['carrinho'] as $key => $value) {
 	//Preco
 
 	echo '<p>Nome: '.$value['nome'].' | Quantidade: '.$value['quantidade'].' | Preço: R$'.($value['quantidade']*$value['preco']).',00</p>';
-}
+}  
 ?>
 
 </body>
