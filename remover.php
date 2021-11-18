@@ -20,4 +20,4 @@ if (isset($_GET['add']) && $_GET['add'] == "carrinho")
 }
 
 /*exibe o carrinho*/
-if(count($_SESSION))
+if(count($_SESSION['itens']) == 0)
