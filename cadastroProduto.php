@@ -1,4 +1,17 @@
 <?php
+ob_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+if((!isset($_SESSION['email']) || !isset($_SESSION['nome'])) ||
+        !isset($_SESSION['perfil']) || !isset($_SESSION['nr']) ||
+        ($_SESSION['nr'] != $_SESSION['confereNr'])) { 
+    // Usuário não logado! Redireciona para a página de login 
+    header("Location: sessionDestroy.php");
+    exit;
+
+        }
 include_once './controller/ProdutoController.php';
 include_once './model/Produto.php';
 include_once './model/Fornecedor.php';

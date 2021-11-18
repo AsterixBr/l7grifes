@@ -25,9 +25,9 @@ $resp = $daoLogin->validarLogin($email, $senha);
 if(gettype($resp) == "object"){
     if(!isset($_SESSION['email'])){
         $_SESSION['email'] = $resp->getemail();
-        $_SESSION['idp'] = $resp->getIdpessoa();
-        $_SESSION['nomep'] = $resp->getNome();
-        $_SESSION['perfilp'] = $resp->getPerfil();
+        $_SESSION['id'] = $resp->getIdpessoa();
+        $_SESSION['nome'] = $resp->getNome();
+        $_SESSION['perfil'] = $resp->getPerfil();
         $_SESSION['cpf'] = $resp->getCpf();
         
         $_SESSION['nr'] = rand(1,1000000);
@@ -42,9 +42,9 @@ if(gettype($resp) == "object"){
     $_SESSION['msg'] = $resp;
     if(isset($_SESSION['email'])){
         $_SESSION['email'] = null;
-        $_SESSION['idp'] = null;
-        $_SESSION['nomep'] = null;
-        $_SESSION['perfilp'] = null;
+        $_SESSION['id'] = null;
+        $_SESSION['nome'] = null;
+        $_SESSION['perfil'] = null;
         $_SESSION['cpf'] = null;
     }
     header("Location: ../index.php");

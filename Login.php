@@ -2,117 +2,101 @@
 
 
 ?>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<doctype html>
-    <html>
+<head>
+	<title>Index</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <body>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 
-        <head>
-            <meta charset="UTF-8">
-            <title>Login</title>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-            <style>
-                .espaco {
-                    padding: 10px;
-                }
-            </style>
-        </head>
-        <header style="color: white;">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
-                <div class="container-fluid">
-                    <a href="#" class="navbar-brand">L7 Grifes</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse show" id="navbarCollapse" style>
-                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Produtos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Carrinho</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Contato</a>
-                            </li>
-                        </ul>
-                        <div>
-                            <a href="Cadastro.php" class="animated-button1">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                LOGIN/CADASTRO
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
+	<meta name="robots" content="noindex, follow">
+	<header style="color: white;">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
+			<div class="container-fluid">
+				<a href="L7grifes.html" class="navbar-brand">L7 Grifes</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+					aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="navbar-collapse collapse show" id="navbarCollapse" style>
+					<ul class="navbar-nav me-auto mb-2 mb-md-0">
+						<li class="nav-item">
+							<a href="Produtos.php" class="nav-link">Produtos</a>
+						</li>
+						<li class="nav-item">
+							<a href="Carrinho.php" class="nav-link">Carrinho</a>
+						</li>
+						<li class="nav-item">
+							<a href="L7grifes.html" class="nav-link">Página Inicial</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+</head>
 
-        <body>
-            <div class="container">
-                <div class="row espaco">
-                    <div class=" col-md-6 offset-md-3" style="margin-top: 10%;">
-                        <div class="card-header bg-primary border espaco
-                         text-white text-center">Login</div>
-                        <div class="card-body border">
-                            <form method="post" action="">
-                                <div class="row espaco">
-                                    <div class="col-md-8 offset-md-2 ">
-                                        <label>Usuário</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-8 offset-md-2 ">
-                                        <input class="form-control" type="text" name="login">
-                                    </div>
-                                </div>
-                                <div class="row espaco">
-                                    <div class="col-md-8 offset-md-2 ">
-                                        <label>Senha</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-8 offset-md-2 ">
-                                        <input class="form-control" type="text" name="senha">
-                                    </div>
-                                </div>
-                                <div class="row espaco" style="margin-top: 20px;">
-                                    <div class="col-md-8 offset-md-2 ">
-                                        <input class="btn btn-success" type="submit" name="enviar" value="Enviar">
-                                        <input class="btn btn-light" type="reset" value="Limpar">
-                                        <input class="btn btn-warning" type="submit" name="cadastro" value="Cadastro" href="cadastro.php">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-26">
+						L7 Grifes
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+					<div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+						<input class="input100" type="text" name="email">
+						<span class="focus-input100" data-placeholder="Email"></span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="pass">
+						<span class="focus-input100" data-placeholder="Senha"></span>
+					</div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							Não tem cadastro?</span>
+						<a class="txt2" href="CadastroCliente.php">
+							Cadastre-se
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="dropDownSelect1"></div>
 
-            <script src=" https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js " integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p " crossorigin="anonymous "></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js " integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT " crossorigin="anonymous "></script>
-        </body>
+	<script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
 
+		gtag('config', 'UA-23581568-13');
+	</script>
+	<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+		data-cf-beacon='{"rayId":"68762adff90551ed","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.8.1","si":10}'></script>
+</body>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </body>
-
-    </html>
+</html>

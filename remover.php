@@ -25,5 +25,12 @@ if(count($_SESSION['itens']) == 0) {
 }else {
     $conectadb = new PDO('mysql:host=localhost;dbname=l7grifes', "root","senac");
     foreach($_SESSION['itens'] as $idProduto => $quantidade)
+$select = $conectadb->prepare("SELECT * FROM produtos where id=?");
+$select->bindParam(1, $idProduto);
+$select->execute();
+$produtos = $select->fetchAll();
+
+echo
+        $produtos[0]["nome"]. '<br/>';
+
 }
-$select

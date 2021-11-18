@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-if((!isset($_SESSION['loginp']) || !isset($_SESSION['nomep'])) ||
+if((!isset($_SESSION['email']) || !isset($_SESSION['nome'])) ||
         !isset($_SESSION['perfilp']) || !isset($_SESSION['nr']) ||
         ($_SESSION['nr'] != $_SESSION['confereNr'])) { 
     // Usuário não logado! Redireciona para a página de login 
@@ -30,6 +30,8 @@ $nav = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"./cadastroProduto.php\">Produto</a>
                         </li>";
+
+                        
                         
                         if($_SESSION['perfilp'] == "Funcionário"){
                             $nav .= "<li class=\"nav-item\">

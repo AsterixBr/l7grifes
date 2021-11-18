@@ -1,5 +1,17 @@
 <?php
-session_start();
+ob_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+if((!isset($_SESSION['email']) || !isset($_SESSION['nome'])) ||
+        !isset($_SESSION['perfil']) || !isset($_SESSION['nr']) ||
+        ($_SESSION['nr'] != $_SESSION['confereNr'])) { 
+    // Usuário não logado! Redireciona para a página de login 
+    header("Location: sessionDestroy.php");
+    exit;
+
+        }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

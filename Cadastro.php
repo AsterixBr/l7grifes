@@ -1,4 +1,12 @@
 <?php
+ob_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+    exit;
+
+        
 include_once 'C:/xampp/htdocs/l7grifes/Controller/PessoaController.php';
 include_once 'C:/xampp/htdocs/l7grifes/model/Pessoa.php';
 include_once 'C:/xampp/htdocs/l7grifes/model/Endereco.php';
@@ -12,7 +20,7 @@ $btAtualizar = FALSE;
 $btExcluir = FALSE;
 ?>
 
-<!DOCTYPE html>
+111<!DOCTYPE html>
 <html>
 
 <head>
