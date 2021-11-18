@@ -28,6 +28,7 @@ if(gettype($resp) == "object"){
         $_SESSION['idp'] = $resp->getIdpessoa();
         $_SESSION['nomep'] = $resp->getNome();
         $_SESSION['perfilp'] = $resp->getPerfil();
+        $_SESSION['cpf'] = $resp->getCpf();
         
         $_SESSION['nr'] = rand(1,1000000);
         $_SESSION['confereNr'] = $_SESSION['nr'];
@@ -44,6 +45,7 @@ if(gettype($resp) == "object"){
         $_SESSION['idp'] = null;
         $_SESSION['nomep'] = null;
         $_SESSION['perfilp'] = null;
+        $_SESSION['cpf'] = null;
     }
     header("Location: ../index.php");
     exit;

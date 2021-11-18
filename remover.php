@@ -20,4 +20,10 @@ if (isset($_GET['add']) && $_GET['add'] == "carrinho")
 }
 
 /*exibe o carrinho*/
-if(count($_SESSION['itens']) == 0)
+if(count($_SESSION['itens']) == 0) {
+    echo 'Carrinho Vazio<br><a href="index.php"> Adicionar itens </a>';
+}else {
+    $conectadb = new PDO('mysql:host=localhost;dbname=l7grifes', "root","senac");
+    foreach($_SESSION['itens'] as $idProduto => $quantidade)
+}
+$select
