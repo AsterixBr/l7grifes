@@ -1,17 +1,5 @@
 <?php
-ob_start();
-if (!isset($_SESSION)) {
-    session_start();
-}
-
-if((!isset($_SESSION['email']) || !isset($_SESSION['nome'])) ||
-        !isset($_SESSION['perfil']) || !isset($_SESSION['nr']) ||
-        ($_SESSION['nr'] != $_SESSION['confereNr'])) { 
-    // Usuário não logado! Redireciona para a página de login 
-    header("Location: sessionDestroy.php");
-    exit;
-
-        }
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -111,12 +99,19 @@ if((!isset($_SESSION['email']) || !isset($_SESSION['nome'])) ||
 				die("você não pode adicionar o produto que não exsite");
 			}
 		}
-		if (isset($_SESSION['remover']) && $_GET['remover'] == "carrinho") {
-			$idProduto = $_GET['id'];
-			unset($_SESSION['items'][$idProduto]);
-			echo '<meta http-EQUIV="REFRESH" CONTENT="0;URL=carrinho.php"/>';
+		if (isset($_GET['remover'])) {
+			$idProduto = (int) $_GET['remover'];
+			if (isset($items[$idProduto])) {
+				if (isset($_SESSION['carrinho'][$idProduto])) {
+					$_SESSION['carrinho'][$idProduto]['quantidade']++;
+				} else {
+					$_SESSION['carrinho'][$idProduto] = array('quantidade' => 1, 'nome' => $items[$idProduto]['nome'], 'preco' => $items[$idProduto]['preco']);
+				}
+				//echo '<script>alert("O item foi adicionado ao carrinho.");</script>';
+			} else {
+				die("você não pode adicionar o produto que não exsite");
+			}
 		}
-
 
 		?>
 		<h2>Carrinho:</h2>

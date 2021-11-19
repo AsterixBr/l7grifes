@@ -1,10 +1,4 @@
 <?php
-ob_start();
-if (!isset($_SESSION)) {
-    session_start();
-}
-
-    exit;
 
         
 include_once 'C:/xampp/htdocs/l7grifes/Controller/PessoaController.php';
