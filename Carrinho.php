@@ -1,132 +1,83 @@
 <?php
 session_start();
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-	<meta charset="UTF-8">
-	<style type="text/css">
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box
-		}
-
-		h2 {
-			background-color: #069;
-			width: 100%;
-			padding: 20px;
-			text-align: center;
-			color: white;
-		}
-
-		.carrinho-container {
-			display: flex;
-			margin-top: 10px;
-			text-align: center;
-		}
-
-		.produto {
-			width: 33.3%;
-			padding: 0 30px;
-		}
-
-		.produto img {
-			max-width: 100%
-		}
-
-		.produto a {
-			display: block;
-			width: 100%;
-			padding: 10px;
-			color: white;
-			background-color: #5fb382;
-			text-align: center;
-			text-decoration: none;
-		}
-
-		.carrinho-item {
-			max-width: 1200px;
-			margin: 10px auto;
-			padding-bottom: 10px;
-
-			border-bottom: 2px dotted #ccc;
-
-		}
-
-		.carrinho-item p {
-			font-size: 16px;
-			color: gray;
-		}
-	</style>
-</head>
-
-<body>
-	<aside>
-		<h2>Carrinho</h2>
-		<div class="carrinho-container">
-
-			<?php
-
-			$items = array(
-				['nome' => 'Camisa Nike', 'imagem' => 'imagem/nike.jpg', 'preco' => '200'],
-				['nome' => 'Camisa Tommy', 'imagem' => 'imagem/tommy.jpg', 'preco' => '100'],
-				['nome' => 'Camisa Brasil', 'imagem' => 'imagem/brasil.jpg', 'preco' => '300'],
-			);
-
-			foreach ($items as $key => $value) {
-			?>
-				<div class="produto">
-					<img src="<?php echo $value['imagem'] ?>" />
-					<a href="?adicionar=<?php echo $key ?>">Adicionar ao carrinho!</a>
-				</div>
-			<?php
-			}
-			?>
-		</div>
-		<?php
-		if (isset($_GET['adicionar'])) {
-			$idProduto = (int) $_GET['adicionar'];
-			if (isset($items[$idProduto])) {
-				if (isset($_SESSION['carrinho'][$idProduto])) {
-					$_SESSION['carrinho'][$idProduto]['quantidade']++;
-				} else {
-					$_SESSION['carrinho'][$idProduto] = array('quantidade' => 1, 'nome' => $items[$idProduto]['nome'], 'preco' => $items[$idProduto]['preco']);
-				}
-				//echo '<script>alert("O item foi adicionado ao carrinho.");</script>';
-			} else {
-				die("você não pode adicionar o produto que não exsite");
-			}
-		}
-		if (isset($_GET['remover'])) {
-			$idProduto = (int) $_GET['remover'];
-			if (isset($items[$idProduto])) {
-				if (isset($_SESSION['carrinho'][$idProduto])) {
-					$_SESSION['carrinho'][$idProduto]['quantidade']++;
-				} else {
-					$_SESSION['carrinho'][$idProduto] = array('quantidade' => 1, 'nome' => $items[$idProduto]['nome'], 'preco' => $items[$idProduto]['preco']);
-				}
-				//echo '<script>alert("O item foi adicionado ao carrinho.");</script>';
-			} else {
-				die("você não pode adicionar o produto que não exsite");
-			}
-		}
-
-		?>
-		<h2>Carrinho:</h2>
-		<?php
-		foreach ($_SESSION['carrinho'] as $key => $value) {
-			//Nome do produto
-			//Quantidade
-			//Preco
-			echo '<div class="carrinho-item">';
-			echo '<p>Nome: ' . $value['nome'] . ' | Quantidade: ' . $value['quantidade'] . ' | Preço: R$' . ($value['quantidade'] * $value['preco']) . ',00<br></p>';
-			echo '<a href="carrinho.php?remover' . $key . '">Remover</a>';
-			echo '</div>';
-		}
-		?>
-
+<html>
+  <head>
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="bootstrapSelectpicker/dist/css/bootstrap-select.min.css" />
+      <style>
+          td{ 
+              text-align: center;
+              padding: 5px; 
+              border: 1px solid blue;
+              font-weight: bold;
+          }
+      </style>
+  </head>
+  <body>
+  <div class="container">
+    <div class="row">
+        <h2>Carrinho de Compra - Exemplo <a href="sessionDestroy.php" class="btn btn-default">Sair</a></h2>
+      <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table>
+        <?php
+        include_once 'DataBase/conecta.php';
+        $valorTotal = 0;
+        foreach ($_SESSION['carrinho'] as $key => $carrinho) {
+            if($carrinho < 1){
+                $_SESSION['carrinho'][$key] = null;
+                $key = 0;
+            }
+            if($key > 0){
+                $sql = "select * from produto where idProduto = '$key'";
+                $query = mysqli_query($db, $sql)or die(mysqli_error($db));
+                $linha = mysqli_fetch_array($query); 
+                do{
+                    $valorTotal += ($carrinho * (double)$linha['valor']);
+                ?>      
+                <tr>
+                    <td><img src="<?php echo $linha['imagem']; ?>" width="64"></td>
+                    <td><?php echo $linha["nome"]; ?></td>
+                    <td><?php echo "R$ ".$linha["valor"]; ?></td>
+                    <td><?php echo $carrinho; ?></td>
+                    <td><a href="esvaziarCarrinho.php?id=<?php echo $key; ?>" ><img src="img/deleta.ico" width="16"></a></td>
+                </tr>         
+            <?php
+                }while($linha = mysqli_fetch_array($query));
+            } 
+        }
+        ?>
+            </table>
+        </div>
+    </div>
+      <div class="row">
+          <div class="col-md-12">
+              <?php
+                   if($_SESSION['contador'] > 0){
+                       echo "Total dos produtos: ". $_SESSION['contador']." - Valor Total: R$ " . $valorTotal;  
+              ?>
+          </div>
+          <div class="col-md-12">
+              <a href="finalizarCompra.php" class="btn btn-default">Finalizar Compra</a>
+          </div>
+          <?php
+                   }else{
+          ?>
+          <div class="col-md-12">
+              <a href="cart.php" class="btn btn-default">Comprar</a>
+          </div>
+          <?php
+                   }
+          ?>
+      </div>
+  </div>
+  
+  <script src="bootstrapSelectpicker/js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="bootstrapSelectpicker/js/bootstrap-select.js"></script>
+  <script src="bootstrapSelectpicker/js/bootstrap-select.mim.js"></script>
 </body>
-
 </html>
