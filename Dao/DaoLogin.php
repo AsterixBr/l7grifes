@@ -21,6 +21,7 @@ class DaoLogin {
                 $st->bindParam(1, $email);
                 $st->bindParam(2, $senha);
                 if($st->execute()){
+                    
                     if($st->rowCount()>0){
                         while ($linha = $st->fetch(PDO::FETCH_OBJ)) {
                             $pessoa->setIdpessoa($linha->idpessoa);
