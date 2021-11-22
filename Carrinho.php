@@ -67,7 +67,7 @@ session_start();
                    }else{
           ?>
           <div class="col-md-12">
-              <a href="cart.php" class="btn btn-default">Comprar</a>
+              <a href="l7grifes.html" class="btn btn-default">Comprar</a>
           </div>
           <?php
                    }

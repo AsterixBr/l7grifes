@@ -5,7 +5,7 @@ include_once 'C:/xampp/htdocs/l7grifes/model/Produto.php';
 class ProdutoController {
     
     public function inserirProduto($categoria, $nomeProduto, 
-            $cor, $tamanho, $vlrCompra, $vlrVenda, $qtdEstoque, $lote, $dtCompra, $FkFornecedor, $FkMarca){
+            $cor, $tamanho, $vlrCompra, $vlrVenda, $qtdEstoque, $lote, $dtCompra, $imagem , $FkFornecedor, $FkMarca){
         $produto = new Produto();
         $produto->setCategoria($categoria);
         $produto->setnomeProduto($nomeProduto);
@@ -16,8 +16,10 @@ class ProdutoController {
         $produto->setqtdEstoque($qtdEstoque);
         $produto->setlote($lote);
         $produto->setDtCompra($dtCompra);
+        $produto->setImagem($imagem);
         $produto->setFkFornecedor($FkFornecedor);
         $produto->setFkMarca($FkMarca);
+
 
         
         
@@ -27,7 +29,7 @@ class ProdutoController {
     
     //método para atualizar dados de produto no BD
     public function atualizarProduto($idProduto, $categoria, $nomeProduto, 
-    $cor, $tamanho, $vlrCompra, $vlrVenda, $qtdEstoque, $lote, $dtCompra, $FkFornecedor, $FkMarca){
+    $cor, $tamanho, $vlrCompra, $vlrVenda, $qtdEstoque, $lote, $dtCompra, $imagem, $FkFornecedor, $FkMarca){
         $produto = new Produto();
         $produto->setIdProduto($idProduto);
         $produto->setCategoria($categoria);
@@ -39,8 +41,10 @@ class ProdutoController {
         $produto->setqtdEstoque($qtdEstoque);
         $produto->setlote($lote);
         $produto->setDtCompra($dtCompra);
+        $produto->setImagem($imagem);
         $produto->setFkFornecedor($FkFornecedor);
         $produto->setFkMarca($FkMarca);
+
         
         $daoProduto = new DaoProduto();
         return $daoProduto->atualizarProdutoDAO($produto);

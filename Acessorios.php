@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['carrinho'])) {
+    $_SESSION['carrinho'] = array();
+    $_SESSION['contador'] = 0;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -53,7 +60,7 @@
       <header style="color: white;">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
           <div class="container-fluid">
-            <a href="#" class="navbar-brand">L7 Grifes</a>
+            <a href="L7grifes.html" class="navbar-brand">L7 Grifes</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
               aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -72,7 +79,7 @@
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Carrinho</a>
+                  <a href="Carrinho.php" class="nav-link">Carrinho</a>
                 </li>
               </ul>
               <form class="d-flex" style="margin-right:750px;">
@@ -80,7 +87,7 @@
                 <button class="btn btn-outline-success" type="submit">Pesquisar</button>
               </form>
               <div>
-                <a href="Login.html" class="animated-button.sandy-two">
+                <a href="Login1.php" class="animated-button.sandy-two">
                   LOGIN/CADASTRO
                 </a>
               </div>

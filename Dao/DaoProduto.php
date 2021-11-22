@@ -27,10 +27,11 @@ class DaoProduto
             $dtCompra = $produto->getDtCompra();
             $FkFornecedor = $produto->getFkFornecedor();
             $FkMarca = $produto->getFkMarca();
+            $Imagem = $produto->getImagem();
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $stmt = $conecta->prepare("insert into produto values "
-                    . "(null,?,?,?,?,?,?,?,?,?,?,?)");
+                    . "(null,?,?,?,?,?,?,?,?,?,?,?,?)");
                 $stmt->bindParam(1, $categoria);
                 $stmt->bindParam(2, $nomeProduto);
                 $stmt->bindParam(3, $cor);
@@ -40,8 +41,9 @@ class DaoProduto
                 $stmt->bindParam(7, $qtdEstoque);
                 $stmt->bindParam(8, $lote);
                 $stmt->bindParam(9, $dtCompra);
-                $stmt->bindParam(10, $FkFornecedor);
-                $stmt->bindParam(11, $FkMarca);
+                $stmt->bindParam(10, $Imagem);
+                $stmt->bindParam(11, $FkFornecedor);
+                $stmt->bindParam(12, $FkMarca);
                 $stmt->execute();
                 $msg->setMsg("<p style='color: green;'>"
                     . "Dados Cadastrados com sucesso</p>");
@@ -75,8 +77,10 @@ class DaoProduto
             $qtdEstoque = $produto->getQtdEstoque();
             $lote = $produto->getLote();
             $dtCompra = $produto->getDtCompra();
+            $Imagem = $produto->getImagem();
             $FkFornecedor = $produto->getFkFornecedor();
             $FkMarca = $produto->getFkMarca();
+         
            // $msg->setMsg("$id, $categoria, $nomeProduto , $cor, $tamanho, $vlrCompra, 
             //$vlrVenda, $qtdEstoque, $lote, $dtCompra, $FkFornecedor, $FkMarca");
         
@@ -92,6 +96,7 @@ class DaoProduto
                     . "qtdEstoque = ?, "
                     . "lote = ?,"
                     . "dtCompra = ?,"
+                    . "Imagem = ?,"
                     . "FkFornecedor = ?, "
                     . "FkMarca = ?"
                     . "where idproduto = ? ");
@@ -104,9 +109,11 @@ class DaoProduto
                 $stmt->bindParam(7, $qtdEstoque);
                 $stmt->bindParam(8, $lote);
                 $stmt->bindParam(9, $dtCompra);
-                $stmt->bindParam(10, $FkFornecedor);
-                $stmt->bindParam(11, $FkMarca);
-                $stmt->bindParam(12, $id);
+                $stmt->bindParam(10, $Imagem);
+                $stmt->bindParam(11, $FkFornecedor);
+                $stmt->bindParam(12, $FkMarca);
+                $stmt->bindParam(13, $id);
+
                 $stmt->execute();
                 $msg->setMsg("<p style='color: blue;'>"
                     . "Dados atualizados com sucesso</p>");
@@ -151,6 +158,7 @@ class DaoProduto
                             $produto->setQtdEstoque($linha->qtdEstoque);
                             $produto->setLote($linha->lote);
                             $produto->setDtCompra($linha->dtCompra);
+                            $produto->setImagem($linha->Imagem);
 
                             $forn = new Fornecedor();
                             $forn->setNomeFornecedor($linha->nomeFornecedor);
@@ -228,6 +236,7 @@ class DaoProduto
                             $produto->setQtdEstoque($linha->qtdEstoque);
                             $produto->setLote($linha->lote);
                             $produto->setDtCompra($linha->dtCompra);
+                            $produto->setImagem($linha->Imagem);
 
                             $forn = new Fornecedor();
                             $forn->setIdfornecedor($linha->idFornecedor);

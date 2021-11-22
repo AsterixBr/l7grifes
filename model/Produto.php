@@ -12,6 +12,7 @@
         private $dtCompra;
         private $FkFornecedor;
         private $FkMarca;
+        private $Imagem;
 
         /**
          * Get the value of idProduto
@@ -249,6 +250,26 @@
         public function setFkMarca($FkMarca)
         {
                 $this->FkMarca = $FkMarca;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of Imagem
+         */ 
+        public function getImagem()
+        {
+                return $this->Imagem;
+        }
+
+        /**
+         * Set the value of Imagem
+         *
+         * @return  self
+         */ 
+        public function setImagem($Imagem)
+        {
+                $this->Imagem = $Imagem;
 
                 return $this;
         }
