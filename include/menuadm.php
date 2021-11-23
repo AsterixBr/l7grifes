@@ -63,7 +63,7 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" style="color:black" href="sessionDestroy.php">Sair</a>
                                     <a class="dropdown-item" style="color:black" href="caixa.php">Caixa</a>
-                                    <a class="dropdown-item" style="color:black" href="./l7grifes/cadastroFornecedor.php">Cadastrar Fornecedor</a>
+                                    <a class="dropdown-item" style="color:black" href="cadastroFornecedor.php">Cadastrar Fornecedor</a>
                                     <a class="dropdown-item" style="color:black" href="Cadastro.php">Cadastrar Funcionário</a>
                                     <a class="dropdown-item" style="color:black" href="cadastroProduto.php">cadastrar Produto</a>
                                     <a class="dropdown-item" style="color:black" href="/marca.php">Cadastrar Marca</a>

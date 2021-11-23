@@ -75,8 +75,8 @@ class Daocliente {
                     }
 
                     //processo para inserir dados de cliente
-                    $stmt = $conecta->prepare("insert into Cliente values "
-                        . "(null,?,?,?,md5(?),?,?)");
+                    $stmt = $conecta->prepare("insert into Pessoa values "
+                        . "(null,?,?,?,md5(?), 'Cliente', ?,?)");
                     $stmt->bindParam(1, $nome);
                     $stmt->bindParam(2, $dtNascimento);
                     $stmt->bindParam(3, $email);
@@ -165,7 +165,7 @@ class Daocliente {
                         }
                     }
                 }
-                $stmt = $conecta->prepare("update Cliente set "
+                $stmt = $conecta->prepare("update pessoa set "
                     . "nome = ?,"
                     . "dtNascimento = ?, "
                     . "email = ?, "
@@ -203,8 +203,8 @@ class Daocliente {
         if ($conecta) {
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $rs = $conecta->query("select * from Cliente inner join Endereco "
-                    . " on cliente.FkEndereco = endereco.idEndereco");
+                $rs = $conecta->query("select * from pessoa inner join Endereco "
+                    . " on pessoa.FkEndereco = endereco.idEndereco");
                 $lista = array();
                 $a = 0;
                 if ($rs->execute()) {
@@ -250,7 +250,7 @@ class Daocliente {
         if ($conecta) {
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conecta->prepare("delete from Cliente "
+                $stmt = $conecta->prepare("delete from pessoa "
                     . "where idpessoa = ?");
                 $stmt->bindParam(1, $id);
                 $stmt->execute();
@@ -275,8 +275,8 @@ class Daocliente {
         if ($conecta) {
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $rs = $conecta->prepare("select * from Cliente inner join endereco "
-                    . " on Cliente.fkendereco = endereco.idEndereco where "
+                $rs = $conecta->prepare("select * from pessoa inner join endereco "
+                    . " on pessoa.fkendereco = endereco.idEndereco where "
                     . "idpessoa = ? limit 1");
                 $rs->bindParam(1, $id);
                 if ($rs->execute()) {
