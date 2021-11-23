@@ -44,22 +44,20 @@ $nav = '<nav class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
       <button class="btn btn-outline-success" type="submit">Pesquisar</button>
     </form>
     <div>
-      <a href="Login1.php" class="animated-button.sandy-two">
-        LOGIN/CADASTRO
-      </a>';
+      ';
       if($_SESSION['perfilp'] == "Funcionário" || $_SESSION['perfilp'] == "Administrador" ){
-        $nav .=  "<li class=\"nav-item\">
-        <a class=\"nav-link\" href=\"./cadastroFornecedor.php\">Fornecedores</a>
-    </li>
+        $nav .=  "
     <li class=\"nav-item dropdown\">
         <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" 
         role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-            Dropdown link
+            Painel de Controle
         </a>
         <ul class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">
-            <li><a class=\"dropdown-item\" href=\"#\">Action</a></li>
-            <li><a class=\"dropdown-item\" href=\"#\">Another action</a></li>
-            <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>
+            <li><a class=\"dropdown-item\" href=\"sessionDestroy.php\">Sair</a></li>
+            <li><a class=\"dropdown-item\" href=\"Cadastro.php\">Cadastrar Funcionário</a></li>
+            <li><a class=\"dropdown-item\" href=\"cadastroFornecedor.php\">Cadastrar Fornecedor</a></li>
+            <li><a class=\"dropdown-item\" href=\"cadastroProduto.php\">Cadastrar Produto</a></li>
+            <li><a class=\"dropdown-item\" href=\"marca.php\">Cadastrar Marca</a></li>
         </ul>
     </li>";
 
