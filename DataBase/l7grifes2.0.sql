@@ -31,7 +31,7 @@ CREATE TABLE `cliente` (
   `cpf` varchar(14) NOT NULL,
   `FkEndereco` int(11) NOT NULL,
   PRIMARY KEY (`idPessoa`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Vitao','2020-12-27','xands@net.com','81dc9bdb52d04dc20036dbd8313ed055','577.200.833-18',2),(2,'Vitaoxxx','2021-10-31','xands@net.com','81dc9bdb52d04dc20036dbd8313ed055','245.987.881-86',2),(3,'Vitor','2021-10-31','xands@net.com','81dc9bdb52d04dc20036dbd8313ed055','577.200.833-18',2),(4,'Vitaotx','2021-11-03','xands@net.com','81dc9bdb52d04dc20036dbd8313ed055','577.200.833-18',2);
+INSERT INTO `cliente` VALUES (1,'Vitao','2020-12-27','xands@net.com','6b57fe654d8ed3d7bcfc5718074ccb2c','577.200.833-18',2),(2,'Vitaoxxx','2021-10-31','xands@net.com','81dc9bdb52d04dc20036dbd8313ed055','245.987.881-86',2),(3,'Vitor','2021-10-31','xands@net.com','81dc9bdb52d04dc20036dbd8313ed055','577.200.833-18',2),(4,'Vitaotx','2021-11-03','xands@net.com','81dc9bdb52d04dc20036dbd8313ed055','577.200.833-18',2),(5,'Skol','2021-10-31','ghvghfgfghfghfgf@gmail.com','6e0d0cdf9e48538255bc003a8587e6d0','547.497.560-52',4),(6,'test','2021-11-02','xands@net.com','98cc7afd2db8fda29f0594839f023b1e','888.888.888-88',2),(7,'teste','2021-11-01','teste@gmail.com','137a3a3a7809a828afe701ad71827e81','222.222.222-22',4),(8,'Vitaog','2021-11-04','xands@net.com','b2a2b56ad26ce6f44a4f23c47ef4884b','577.200.833-18',5),(9,'Daniels','2021-11-01','skiner@gmail.com','4b5ee3f27537e8c13911d17972536347','245.987.881-86',2);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `endereco` (
   `cidade` varchar(45) NOT NULL,
   `uf` varchar(45) NOT NULL,
   PRIMARY KEY (`idEndereco`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `endereco` (
 
 LOCK TABLES `endereco` WRITE;
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
-INSERT INTO `endereco` VALUES (1,'73403-345','Módulo 15','15','casa 15','Condomínio Mestre D\'Armas (Planaltina)','Brasília','DF'),(2,'73403-345','Módulo 15','25','casa ','Condomínio Mestre D\'Armas (Planaltina)','Brasília','DF'),(3,'73403-345','Módulo 15','66','ap','Condomínio Mestre D\'Armas (Planaltina)','Brasília','DF'),(4,'72543-402','QR 213 Conjunto B','14','casa ','Santa Maria','Brasília','DF');
+INSERT INTO `endereco` VALUES (1,'73403-345','Módulo 15','15','casa 15','Condomínio Mestre D\'Armas (Planaltina)','Brasília','DF'),(2,'73403-345','Módulo 15','25','casa ','Condomínio Mestre D\'Armas (Planaltina)','Brasília','DF'),(3,'73403-345','Módulo 15','66','ap','Condomínio Mestre D\'Armas (Planaltina)','Brasília','DF'),(4,'72543-402','QR 213 Conjunto B','14','casa ','Santa Maria','Brasília','DF'),(5,'73403-345','Módulo 15','111','apart','Condomínio Mestre D\'Armas (Planaltina)','Brasília','DF');
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +153,7 @@ CREATE TABLE `pessoa` (
   PRIMARY KEY (`idPessoa`),
   KEY `fk_Pessoa_Endereco1_idx` (`FkEndereco`),
   CONSTRAINT `fk_Pessoa_Endereco1` FOREIGN KEY (`FkEndereco`) REFERENCES `endereco` (`idEndereco`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +162,7 @@ CREATE TABLE `pessoa` (
 
 LOCK TABLES `pessoa` WRITE;
 /*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
-INSERT INTO `pessoa` VALUES (3,'Vitao','2021-11-02','xands@net.com','4122cb13c7a474c1976c9706ae36521d','Administrador','577.200.833-18',2),(5,'jgjg','2021-11-02','ghvghfgfghfghfgf@gmail.com','943aa0fcda4ee2901a7de9321663b114','Funcionário','562.165.262-52',4);
+INSERT INTO `pessoa` VALUES (3,'Vitao','2021-11-02','xands@net.com','90172145f7b8dfe1e35c6c9242ace06f','Administrador','577.200.833-18',2),(5,'jgjg','2021-11-02','ghvghfgfghfghfgf@gmail.com','943aa0fcda4ee2901a7de9321663b114','Funcionário','562.165.262-52',4),(6,'Vitor','2021-10-31','skiner@gmail.com','1b02dad2084860212efb16d8ff73ffdb','Administrador','577.200.833-18',2);
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,14 +184,15 @@ CREATE TABLE `produto` (
   `qtdEstoque` varchar(255) DEFAULT NULL,
   `lote` varchar(45) NOT NULL,
   `dtCompra` date NOT NULL,
+  `Imagem` varchar(255) NOT NULL,
   `FkFornecedor` int(11) NOT NULL,
-  `FkMarca` int(11) NOT NULL,
+  `FkMarca` int(11) DEFAULT NULL,
   PRIMARY KEY (`idProduto`),
   KEY `FkFornecedor` (`FkFornecedor`),
   KEY `FkMarca` (`FkMarca`),
   CONSTRAINT `produto_ibfk_1` FOREIGN KEY (`FkFornecedor`) REFERENCES `fornecedor` (`idFornecedor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `produto_ibfk_2` FOREIGN KEY (`FkMarca`) REFERENCES `marca` (`idMarca`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+  CONSTRAINT `produto_ibfk_2` FOREIGN KEY (`FkMarca`) REFERENCES `marca` (`idMarca`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +201,7 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
-INSERT INTO `produto` VALUES (22,'Exemplo1','camisa polo','azul','42',59.99,100.99,'45','100','2021-09-30',9,2),(23,'Exemplo1','Tênis adidas','vermelho','42',59.99,75.00,'345','12','2021-09-26',9,2);
+INSERT INTO `produto` VALUES (28,'masculina','calça jeans calvin klein','azul','42',39.99,79.99,'35','142021','2021-11-01','img/118696485_130990552040794_8318677523067936807_n.jpg',9,2),(29,'masculina','short jeans reserva','azul','42',39.99,79.99,'35','142021','2021-10-31','img/tommy.jpg',9,2),(31,'masculina','calça jeans calvin klein','azul','42',39.99,79.99,'516','142021','2021-11-16','img/semImagem.jpg',9,2),(32,'masculina','calça jeans calvin klein','azul','42',39.99,79.99,'8','142021','2021-11-04','img/118592949_310890863525624_3517867113317653380_n.jpg',9,2);
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,4 +326,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-10  8:50:03
+-- Dump completed on 2021-11-23  9:18:53

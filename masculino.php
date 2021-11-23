@@ -73,9 +73,9 @@ if (!isset($_SESSION['carrinho'])) {
                     Produtos
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="Masculino.html">Masculinos</a></li>
-                    <li><a class="dropdown-item" href="Feminino.html">Femeninos</a></li>
-                    <li><a class="dropdown-item" href="Acessorios.html">Acessórios</a></li>
+                    <li><a class="dropdown-item" href="Masculino.php">Masculinos</a></li>
+                    <li><a class="dropdown-item" href="Feminino.php">Femeninos</a></li>
+                    <li><a class="dropdown-item" href="Acessorios.php">Acessórios</a></li>
                   </ul>
                 </li>
                 <li class="nav-item">
@@ -87,7 +87,7 @@ if (!isset($_SESSION['carrinho'])) {
                 <button class="btn btn-outline-success" type="submit">Pesquisar</button>
               </form>
               <div>
-                <a href="Login.html" class="animated-button.sandy-two">
+                <a href="Login1.php" class="animated-button.sandy-two">
                   LOGIN/CADASTRO
                 </a>
               </div>

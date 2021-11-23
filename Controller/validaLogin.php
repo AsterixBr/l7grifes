@@ -1,53 +1,59 @@
 <?php
 ob_start();
 session_start();
-if (!empty($_POST) AND (empty($_POST['email']) OR empty($_POST['senha']))) {
-	//redireciona para a página inicial.
-	header("Location: ../sessionDestroy.php"); exit;
-}
-require_once "C:/xampp/htdocs/l7grifes/dao/DaoLogin.php";
-require_once "C:/xampp/htdocs/l7grifes/model/Mensagem.php";
-require_once "C:/xampp/htdocs/l7grifes/model/Pessoa.php";
+if (!empty($_POST) AND (empty($_POST['email']) OR empty($_POST['senha']))){
+    header("Location: ../sessionDestroy.php"); exit;
+} 
+require_once "./Dao/DaoLogin.php";
+require_once ".model/Mensagem.php";
+require_once "./model/Pessoa.php";
 
 if(isset($_POST)){
-    $login = $_POST['email'];
+    $email = $_POST['email'];
     $senha = $_POST['senha'];
+
 }else{
     header("Location: ../sessionDestroy.php"); exit;
 }
 
 $daoLogin = new DaoLogin();
 
-$resp = new Pessoa();
-$resp = $daoLogin->validarLogin($email, $senha);
-//echo gettype($resp);
+$resp = new Mensagem();
+$resp = $daoLogin->validarLogin($email,$senha);
 
 if(gettype($resp) == "object"){
-    if(!isset($_SESSION['email'])){
-        $_SESSION['email'] = $resp->getemail();
-        $_SESSION['id'] = $resp->getIdpessoa();
-        $_SESSION['nome'] = $resp->getNome();
-        $_SESSION['perfil'] = $resp->getPerfil();
-        $_SESSION['cpf'] = $resp->getCpf();
-        
+    if(!isset($_SESSION['emailp'])){
+        $_SESSION['idp'] = $resp->getIdpessoa();
+        $_SESSION['nomep'] = $resp->getNome();
+        $_SESSION['senhap'] = $resp->getSenha();
+        $_SESSION['cpfp'] = $resp->getCpf();
+
         $_SESSION['nr'] = rand(1,1000000);
         $_SESSION['confereNr'] = $_SESSION['nr'];
-        //echo($_SESSION['nr'])."<br>";
-        //echo($_SESSION['confereNr'])."<br>";
-        header("Location: ../principal.php");
+
+        header("Location: ../l7grifes.html");
         exit;
 
+    }else{
+        $_SESSION['msg'] =  "Usuario Inexistente!!!";
+        if(isset($_SESSION['email'])){
+            $_SESSION['idp'] = null;
+            $_SESSION['nomep'] = null;
+            $_SESSION['senhap'] = null;
+            $_SESSION['cpfp'] = null;
+        }
+        header("Location: ../login1.php");
+        exit;
     }
 }else{
     $_SESSION['msg'] = $resp;
     if(isset($_SESSION['email'])){
-        $_SESSION['email'] = null;
-        $_SESSION['id'] = null;
-        $_SESSION['nome'] = null;
-        $_SESSION['perfil'] = null;
-        $_SESSION['cpf'] = null;
+        $_SESSION['idp'] = null;
+        $_SESSION['nomep'] = null;
+        $_SESSION['senhap'] = null;
+        $_SESSION['cpfp'] = null;
     }
-    header("Location: ../index.php");
+    header("Location: ../login1.php");
     exit;
 }
 ob_end_flush();

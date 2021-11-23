@@ -1,3 +1,15 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+if (!isset($_SESSION['msg'])) {
+    $_SESSION['msg'] = "";
+}
+
+$_SESSION['nr'] = "-1";
+$_SESSION['confereNr'] = "-2";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -41,7 +53,7 @@
 	<div class="limiter" >
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" method="post" action="">
+				<form class="login100-form validate-form" method="post" action="./controller/validaLogin.php">
 					<span class="login100-form-title p-b-26">
 						L7 Grifes
 					</span>

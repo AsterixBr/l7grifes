@@ -54,7 +54,7 @@ $btExcluir = FALSE;
                     </li>
                 </ul>
                 <div>
-                    <a href="Login.html" class="animated-button1">
+                    <a href="Login1.php" class="animated-button1">
                         <span></span>
                         <span></span>
                         <span></span>
