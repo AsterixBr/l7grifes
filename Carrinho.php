@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once 'nav.php';
 ?>
 <html>
   <head>
@@ -14,7 +15,12 @@ session_start();
           }
       </style>
   </head>
+
   <body>
+  <?php 
+      $nav = navBar();
+      echo $nav;
+    ?>
   <div class="container">
     <div class="row">
         <h2>Carrinho de Compra - Exemplo <a href="sessionDestroy.php" class="btn btn-default">Sair</a></h2>

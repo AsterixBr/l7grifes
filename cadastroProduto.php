@@ -1,11 +1,11 @@
 <?php
-/*ob_start();
+ob_start();
 if (!isset($_SESSION)) {
   session_start();
 }
-
-if ((!isset($_SESSION['email']) || !isset($_SESSION['nome'])) ||
-  !isset($_SESSION['perfil']) || !isset($_SESSION['nr']) ||
+/*
+if ((!isset($_SESSION['emailp']) || !isset($_SESSION['nomep'])) ||
+  !isset($_SESSION['perfilp']) || !isset($_SESSION['nr']) ||
   ($_SESSION['nr'] != $_SESSION['confereNr'])
 ) {
   // Usuário não logado! Redireciona para a página de login 
@@ -13,6 +13,8 @@ if ((!isset($_SESSION['email']) || !isset($_SESSION['nome'])) ||
   exit;
 }
 */
+include_once 'nav.php';
+
 include_once './controller/ProdutoController.php';
 include_once './model/Produto.php';
 include_once './model/Fornecedor.php';
@@ -53,43 +55,14 @@ $btExcluir = FALSE;
   </style>
 
 </head>
-<header style="color: white;">
 
-</header>
+
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
-    <div class="container-fluid">
-      <a href="#" class="navbar-brand">L7 Grifes</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse show" id="navbarCollapse" style>
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a href="Produtos.php" class="nav-link">Produtos</a>
-          </li>
-          <li class="nav-item">
-            <a href="Carrinho.php" class="nav-link">Carrinho</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">Painel de Controle</a>
-          </li>
-        </ul>
-        <div>
-          <a href="Login1.php" class="animated-button1">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            LOGIN/CADASTRO
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <?php
-  ?>
+<?php 
+      $nav = navBar();
+      echo $nav;
+    ?>
   <div class="container-fluid">
     <div class="row" style="margin-top: 30px;">
       <div class="col-md-4">

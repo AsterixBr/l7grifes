@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once 'nav.php';
 if (!isset($_SESSION['carrinho'])) {
     $_SESSION['carrinho'] = array();
     $_SESSION['contador'] = 0;
@@ -10,6 +11,12 @@ if (!isset($_SESSION['carrinho'])) {
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="bootstrapSelectpicker/dist/css/bootstrap-select.min.css" />
     </head>
+    <header style="color: white;">
+    <?php 
+      $nav = navBar();
+      echo $nav;
+    ?>
+    </header>
     <body>
         <div class="container">
             <div class="row">

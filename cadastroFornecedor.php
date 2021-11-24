@@ -1,10 +1,6 @@
 <?php
-
-ob_start();
-if (!isset($_SESSION)) {
-    session_start();
-}
-
+session_start();
+include_once 'nav.php';
 
 include_once 'C:/xampp/htdocs/l7grifes/Controller/FornecedorController.php';
 include_once 'C:/xampp/htdocs/l7grifes/model/Fornecedor.php';
@@ -21,6 +17,7 @@ $btExcluir = FALSE;
 <head>
     <meta charset="UTF-8">
     <title>Cadastro</title>
+
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
@@ -33,53 +30,25 @@ $btExcluir = FALSE;
             padding-top: 15px;
         }
     </style>
-  <script>
-  function mascara(t, mask){
-    var i = t.value.length;
-    var saida = mask.substring(1,0);
-    var texto = mask.substring(i)
-    if (texto.substring(0,1) != saida){
-    t.value += texto.substring(0,1);
-    }
-    }
+    <script>
+        function mascara(t, mask) {
+            var i = t.value.length;
+            var saida = mask.substring(1, 0);
+            var texto = mask.substring(i)
+            if (texto.substring(0, 1) != saida) {
+                t.value += texto.substring(0, 1);
+            }
+        }
     </script>
 </head>
- <header style="color: white;">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
-      <div class="container-fluid">
-        <a href="#" class="navbar-brand">L7 Grifes</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-          aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse show" id="navbarCollapse" style>
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <a href="Produtos.php" class="nav-link">Produtos</a>
-            </li>
-            <li class="nav-item">
-              <a href="Carrinho.php" class="nav-link">Carrinho</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">Painel de Controle</a>
-            </li>
-          </ul>
-          <div>
-            <a href="Login.html" class="animated-button1">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              LOGIN/CADASTRO
-            </a>
-             </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-<body>
 
-        <label id="cepErro" style="color:red;"></label>
+<body>
+    <?php
+    $nav = navBar();
+    echo $nav;
+    ?>
+
+    <label id="cepErro" style="color:red;"></label>
 
     <div class="container-fluid">
         <div class="row" style="margin-top: 30px;">
@@ -239,8 +208,7 @@ $btExcluir = FALSE;
                             <input class="form-control" type="text" onkeypress="mascara(this, '## #####-####')" maxlength="13" value="<?php echo $fr->getcell(); ?>" name="cell">
                             <input type="submit" name="cadastrarFornecedor" class="btn btn-success btInput" value="Enviar" <?php if ($btEnviar == TRUE) echo "disabled"; ?>>
                             <input type="submit" name="atualizarFornecedor" class="btn btn-secondary btInput" value="Atualizar" <?php if ($btAtualizar == FALSE) echo "disabled"; ?>>
-                            <button type="button" class="btn btn-warning btInput" data-bs-toggle="modal" data-bs-target="#exampleModal" 
-                            <?php if ($btExcluir == FALSE) echo "disabled"; ?>>
+                            <button type="button" class="btn btn-warning btInput" data-bs-toggle="modal" data-bs-target="#exampleModal" <?php if ($btExcluir == FALSE) echo "disabled"; ?>>
                                 Excluir
                             </button>
                             <!-- Modal para excluir -->
@@ -317,25 +285,22 @@ $btExcluir = FALSE;
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Excluir fornecedor</h5>
-                                                    <button type="button" class="btn-close" 
-                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <form method="post" action="">
-                                                        <label><strong>Deseja excluir o fornecedor 
+                                                        <label><strong>Deseja excluir o fornecedor
                                                                 <?php echo $lf->getNomeFornecedor(); ?>?</strong></label>
-                                                        <input type="hidden" name="ide" 
-                                                               value="<?php echo $lf->getIdfornecedor(); ?>">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" name="excluir" class="btn btn-primary">Sim</button>
-                                                            <button type="reset" class="btn btn-secondary" 
-                                                                    data-bs-dismiss="modal">Não</button>
-                                                        </div>
-                                                    </form>
+                                                        <input type="hidden" name="ide" value="<?php echo $lf->getIdfornecedor(); ?>">
                                                 </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" name="excluir" class="btn btn-primary">Sim</button>
+                                                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                </div>
+                                                </form>
                                             </div>
                                         </div>
+                                    </div>
                             <?php
                                 }
                             }
@@ -356,7 +321,7 @@ $btExcluir = FALSE;
 
     <script>
         var myModal = document.getElementById('myModal'),
-        var myInput = document.getElementById('myInput')
+            var myInput = document.getElementById('myInput')
 
         myModal.addEventListener('shown.bs.modal', function() {
             myInput.focus()

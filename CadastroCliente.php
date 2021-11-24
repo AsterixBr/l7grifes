@@ -1,6 +1,7 @@
 
 <?php
-
+session_start();
+include_once 'nav.php';
         
 
 include_once 'C:/xampp/htdocs/l7grifes/Controller/ClienteController.php';
@@ -44,27 +45,12 @@ $btExcluir = FALSE;
 
 <body>
     <header style="color: white;">
-
+    <?php 
+      $nav = navBar();
+      echo $nav;
+    ?>
     </header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
-        <div class="container-fluid">
-            <a href="L7grifes.html" class="navbar-brand">L7 Grifes</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse show" id="navbarCollapse" style>
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a href="Produtos.php" class="nav-link">Produtos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="Carrinho.php" class="nav-link">Carrinho</a>
-                    </li>
-                </ul>
 
-            </div>
-        </div>
-    </nav>
 
     <div class="container-fluid">
         <div class="row" style="margin-top: 30px;">

@@ -1,6 +1,7 @@
 <?php
 if (!isset($_SESSION)) {
     session_start();
+	include_once 'nav.php';
 }
 if (!isset($_SESSION['msg'])) {
     $_SESSION['msg'] = "";

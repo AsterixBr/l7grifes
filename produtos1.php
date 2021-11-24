@@ -1,8 +1,18 @@
+<?php
+session_start();
+include_once 'nav.php';
+?>
 <html>
   <head>
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <link rel="stylesheet" href="bootstrapSelectpicker/dist/css/bootstrap-select.min.css" />
   </head>
+  <header>
+  <?php 
+      $nav = navBar();
+      echo $nav;
+    ?>
+  </header>
   <body>
   <div class="container">
     <div class="row">

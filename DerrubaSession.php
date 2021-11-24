@@ -5,7 +5,7 @@ session_unset(); // Eliminar todas as variáveis da sessão
 // Destrói a sessão por segurança
 session_destroy();
 // Redireciona o visitante de volta pro login
-header("Location: l7grifes.html");
+header("Location: l7grifes.php");
 exit;
 ob_end_flush();
 ?>

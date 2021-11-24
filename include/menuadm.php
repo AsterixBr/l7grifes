@@ -27,29 +27,7 @@
                             <a href="L7grifes.html" class="nav-link">Página Inicial</a>
                         </li>
 
-                        <?php
-                        if (isset($_SESSION['id'])) {
-                        ?>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <?= $_SESSION['nome']; ?> <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#" id="logout" onclick="efetuarLogout()">Logout</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                            <?php
-                        } else {
-                            ?>
-
-                            <?php
-                        }
-                            ?>
-
+                        
 
 
                             <!-- Botão dropright dividido -->
@@ -58,7 +36,7 @@
   <img src="img/Menu.png" height="30px" width="30px"> -->
                                 </button>
                                 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="sr-only">Dropright</span>
+                                    <span class="sr-only"></span>
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" style="color:black" href="sessionDestroy.php">Sair</a>
