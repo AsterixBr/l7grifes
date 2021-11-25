@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'nav.php';
+include_once 'nav1.php';
 
 include_once 'C:/xampp/htdocs/l7grifes/Controller/FornecedorController.php';
 include_once 'C:/xampp/htdocs/l7grifes/model/Fornecedor.php';
@@ -47,7 +47,6 @@ $btExcluir = FALSE;
     $nav = navBar();
     echo $nav;
     ?>
-
     <label id="cepErro" style="color:red;"></label>
 
     <div class="container-fluid">
@@ -318,15 +317,11 @@ $btExcluir = FALSE;
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jQuery.js"></script>
     <script src="js/jQuery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+  
 
-    <script>
-        var myModal = document.getElementById('myModal'),
-            var myInput = document.getElementById('myInput')
 
-        myModal.addEventListener('shown.bs.modal', function() {
-            myInput.focus()
-        })
-    </script>
     <script>
         $(document).ready(function() {
 

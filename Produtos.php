@@ -83,7 +83,7 @@ include_once 'nav.php';
             <div class="card-body">
                 <h5 class="card-title">produto</h5>
                 <p class="card-text">descrição do produto</p>
-                <a href="#" class="btn btn-success">Compra</a>
+                <a href="carrinho.php" class="btn btn-success">Compra</a>
             </div>
 
         </div>
@@ -111,6 +111,8 @@ include_once 'nav.php';
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jQuery.js"></script>
     <script src="js/jQuery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </body>
 
 </html>

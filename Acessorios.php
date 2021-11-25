@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'include/menuadm.php';
+include_once 'nav1.php';
 if (!isset($_SESSION['carrinho'])) {
     $_SESSION['carrinho'] = array();
     $_SESSION['contador'] = 0;
@@ -21,7 +21,6 @@ if (!isset($_SESSION['carrinho'])) {
   <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-  <link href="css/header.css" rel="stylesheet">
   <link href="css/footers.css" rel="stylesheet">
   <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/footers/">
   <link rel="stylesheet" href="css/cards.css">
@@ -63,7 +62,6 @@ if (!isset($_SESSION['carrinho'])) {
       $nav = navBar();
       echo $nav;
     ?>
-      </header>
  
 
       <footer>

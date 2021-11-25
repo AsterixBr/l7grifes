@@ -1,21 +1,16 @@
 <?php
 ob_start();
 
-
-
-
 function navBar()
 {
   if ($_SESSION['perfilp'] == "Funcionário" || $_SESSION['perfilp'] == "Administrador") {
     if (!isset($_SESSION)) {
       session_start();
-      return $nav = navBar();
+      
     }
+    $nav = "".'
 
-?>
-
-
-    <nav name="nav" id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
+    <nav name="nav" id="nav" class="navbar navbar-expand-lg navbar-light bg-light ml-5">
       <div class="container-fluid">
 
         <a href="l7grifes.php" class="navbar-brand">L7 Grifes</a>
@@ -65,9 +60,10 @@ function navBar()
       </div>
 
 
-    </nav>
+    </nav>';
 
-<?php
+
   }
+  return $nav;
 }
 ?>
