@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'nav1.php';
+include_once 'nav.php';
 if (!isset($_SESSION['carrinho'])) {
     $_SESSION['carrinho'] = array();
     $_SESSION['contador'] = 0;
@@ -37,8 +37,154 @@ if (!isset($_SESSION['carrinho'])) {
   <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
   <meta name="theme-color" content="#7952b3">
   </head>
-
   <body>
+    <?php
+          $nav = navBar();
+          echo $nav;
+    ?>
+  <section class="wrapper">
+      <div class="container-fostrap">
+        <div>
+          <h1 class="heading">
+          Roupas masculinas
+          </h1>
+        </div>
+        <div class="content">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <div class="card">
+                  <a class="img-card" href="#">
+                    <img src="img/219533060_502700267666442_4230802467710611631_n.jpg" />
+                  </a>
+                  <div class="card-content">
+                    <h4 class="card-title">
+                      <a href="#"> Nome do produto
+                      </a>
+                    </h4>
+                    <p class="">
+                      descrição do produto
+                    </p>
+                  </div>
+                  <div class="card-read-more">
+                    <a href="#" class="btn btn-link btn-block">
+                      compra
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <div class="card">
+                  <a class="img-card" href="#">
+                    <img src="img/173098479_2650349241923004_5950617935057221691_n.jpg" />
+                  </a>
+                  <div class="card-content">
+                    <h4 class="card-title">
+                      <a href="#">Nome do produto
+                      </a>
+                    </h4>
+                    <p class="">
+                      descrição do produto
+                    </p>
+                    </p>
+                  </div>
+                  <div class="card-read-more">
+                    <a href="#" class="btn btn-link btn-block">
+                      compra
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <div class="card">
+                  <a class="img-card" href="#">
+                    <img src="img/156961516_111509954303702_9006739308221494341_n.jpg" />
+                  </a>
+                  <div class="card-content">
+                    <h4 class="card-title">
+                      <a href="#">Nome do produto
+                      </a>
+                    </h4>
+                    <p class="">
+                      descrição do produto
+                    </p>
+                  </div>
+                  <div class="card-read-more">
+                    <a href="#" class="btn btn-link btn-block">
+                      compra
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <div class="card">
+                  <a class="img-card" href="#">
+                    <img src="img/156961516_111509954303702_9006739308221494341_n.jpg" />
+                  </a>
+                  <div class="card-content">
+                    <h4 class="card-title">
+                      <a href="#">Nome do produto
+                      </a>
+                    </h4>
+                    <p class="">
+                      descrição do produto
+                    </p>
+                  </div>
+                  <div class="card-read-more">
+                    <a href="#" class="btn btn-link btn-block">
+                      compra
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <div class="card">
+                  <a class="img-card" href="#">
+                    <img src="img/156961516_111509954303702_9006739308221494341_n.jpg" />
+                  </a>
+                  <div class="card-content">
+                    <h4 class="card-title">
+                      <a href="#">Nome do produto
+                      </a>
+                    </h4>
+                    <p class="">
+                      descrição do produto
+                    </p>
+                  </div>
+                  <div class="card-read-more">
+                    <a href="#" class="btn btn-link btn-block">
+                      compra
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <div class="card">
+                  <a class="img-card" href="#">
+                    <img src="img/156961516_111509954303702_9006739308221494341_n.jpg" />
+                  </a>
+                  <div class="card-content">
+                    <h4 class="card-title">
+                      <a href="#">Nome do produto
+                      </a>
+                    </h4>
+                    <p class="">
+                      descrição do produto
+                    </p>
+                  </div>
+                  <div class="card-read-more">
+                    <a href="#" class="btn btn-link btn-block">
+                      compra
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="bootstrap" viewBox="0 0 118 94">
           <path fill-rule="evenodd" clip-rule="evenodd"
@@ -58,10 +204,6 @@ if (!isset($_SESSION['carrinho'])) {
             d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
         </symbol>
       </svg>
-      <?php 
-      $nav = navBar();
-      echo $nav;
-    ?>
       <footer>
         <div class="container">
           <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

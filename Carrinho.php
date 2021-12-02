@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['carrinho'])) {
+  $_SESSION['carrinho'] = array();
+  $_SESSION['contador'] = 0;
+}
 include_once 'nav.php';
 ?>
 <!DOCTYPE html>
@@ -20,8 +24,9 @@ include_once 'nav.php';
     ?>
 
   <div class="container">
+  <h2>Carrinho de compras</h2>
     <table class="carrinho" border="1" cellppading="0" cellspacing="0">
-      <caption>Carrinho de compras</caption>
+
       <thead>
         <tr>
           <td>Produto</td>
@@ -45,8 +50,8 @@ include_once 'nav.php';
 
         <tbody>
          <?php
-          $contarProdutos = count($produtos);
-          if($contarProdutos == 0){
+          $contador = count($produtos);
+          if($contador == 0){
             echo'<tr><td colspan="5">Não existem produtos no carrinho!</td></tr>';
           }else{
             foreach($produtos as $indice => $produto):
@@ -56,7 +61,7 @@ include_once 'nav.php';
             <td><input type="text" size="3" name="qtd[<?php echo $indice;?>]" value="<?php echo $produto['qtd'];?>"></td>
             <td>R$ <?php echo number_format($produto['preco'], 2,',','.');?></td>
             <td>R$ <?php echo number_format($produto['subtotal'], 2,',','.');?></td>
-            <td><a class="btn" href="?acao=del&id=<?php echo $indice;?>">Remover</a></td>
+            <td><a class="btn" href="remover.php">Remover</a></td>
           </tr>
             <?php endforeach; }?>
          

@@ -63,6 +63,8 @@ function navBar()
 
     </nav>';
 
+    
+
 
   }
   return $nav;
