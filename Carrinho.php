@@ -1,89 +1,77 @@
 <?php
 session_start();
-include_once 'nav1.php';
+include_once 'nav.php';
 ?>
-<html>
-  <head>
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="bootstrapSelectpicker/dist/css/bootstrap-select.min.css" />
-      <style>
-          td{ 
-              text-align: center;
-              padding: 5px; 
-              border: 1px solid blue;
-              font-weight: bold;
-          }
-      </style>
-  </head>
-
-  <body>
-  <?php 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Carrinho com php oo - Carrrinho (cart)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<?php 
       $nav = navBar();
       echo $nav;
     ?>
+
   <div class="container">
-    <div class="row">
-        <h2>Carrinho de Compra - Exemplo <a href="sessionDestroy.php" class="btn btn-default">Sair</a></h2>
-      <hr />
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <table>
-        <?php
-        include_once 'DataBase/conecta.php';
-        $valorTotal = 0;
-        foreach ($_SESSION['carrinho'] as $key => $carrinho) {
-            if($carrinho < 1){
-                $_SESSION['carrinho'][$key] = null;
-                $key = 0;
-            }
-            if($key > 0){
-                $sql = "select * from produto where idProduto = '$key'";
-                $query = mysqli_query($db, $sql)or die(mysqli_error($db));
-                $linha = mysqli_fetch_array($query); 
-                do{
-                    $valorTotal += ($carrinho * (double)$linha['valor']);
-                ?>      
-                <tr>
-                    <td><img src="<?php echo $linha['imagem']; ?>" width="64"></td>
-                    <td><?php echo $linha["nome"]; ?></td>
-                    <td><?php echo "R$ ".$linha["valor"]; ?></td>
-                    <td><?php echo $carrinho; ?></td>
-                    <td><a href="esvaziarCarrinho.php?id=<?php echo $key; ?>" ><img src="img/deleta.ico" width="16"></a></td>
-                </tr>         
-            <?php
-                }while($linha = mysqli_fetch_array($query));
-            } 
-        }
-        ?>
-            </table>
-        </div>
-    </div>
-      <div class="row">
-          <div class="col-md-12">
-              <?php
-                   if($_SESSION['contador'] > 0){
-                       echo "Total dos produtos: ". $_SESSION['contador']." - Valor Total: R$ " . $valorTotal;  
-              ?>
-          </div>
-          <div class="col-md-12">
-              <a href="finalizarCompra.php" class="btn btn-default">Finalizar Compra</a>
-          </div>
-          <?php
-                   }else{
-          ?>
-          <div class="col-md-12">
-              <a href="l7grifes.html" class="btn btn-default">Comprar</a>
-          </div>
-          <?php
-                   }
-          ?>
-      </div>
+    <table class="carrinho" border="1" cellppading="0" cellspacing="0">
+      <caption>Carrinho de compras</caption>
+      <thead>
+        <tr>
+          <td>Produto</td>
+          <td>Quantidade</td>
+          <td>Preço</td>
+          <td>Subtotal</td>
+          <td>Remover</td>
+        </tr>
+      </thead>
+      <form action="" method="post">
+        <tfoot>
+          <tr>
+            <td colspan="4">Valor Total:</td>
+            <td>R$ <?php echo number_format($total, 2, ',','.');?></td>
+          </tr>
+          <tr>
+            <td><input class="btn reload" type="submit" name="atualizar" value="Atualizar Carrinho"></td>
+            <td><a class="btn" href="l7grifes.php">Continuar Comprando</a></td>
+          </tr>
+        </tfoot>
+
+        <tbody>
+         <?php
+          $contarProdutos = count($produtos);
+          if($contarProdutos == 0){
+            echo'<tr><td colspan="5">Não existem produtos no carrinho!</td></tr>';
+          }else{
+            foreach($produtos as $indice => $produto):
+         ?>
+          <tr>
+            <td><?php echo $produto['titulo'];?></td>
+            <td><input type="text" size="3" name="qtd[<?php echo $indice;?>]" value="<?php echo $produto['qtd'];?>"></td>
+            <td>R$ <?php echo number_format($produto['preco'], 2,',','.');?></td>
+            <td>R$ <?php echo number_format($produto['subtotal'], 2,',','.');?></td>
+            <td><a class="btn" href="?acao=del&id=<?php echo $indice;?>">Remover</a></td>
+          </tr>
+            <?php endforeach; }?>
+         
+        </tbody>
+      </form>
+
+    </table>
   </div>
   
   <script src="bootstrapSelectpicker/js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap.js"></script>
   <script src="bootstrapSelectpicker/js/bootstrap-select.js"></script>
   <script src="bootstrapSelectpicker/js/bootstrap-select.mim.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </body>
 </html>

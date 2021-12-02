@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-include_once 'nav1.php';
+include_once 'nav.php';
         
 
 include_once 'C:/xampp/htdocs/l7grifes/Controller/ClienteController.php';

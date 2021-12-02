@@ -1,6 +1,6 @@
 <?php
  session_start();
- include_once 'C:/xampp/htdocs/l7grifes/nav1.php';       
+ include_once 'C:/xampp/htdocs/l7grifes/nav.php';       
 include_once 'C:/xampp/htdocs/l7grifes/Controller/PessoaController.php';
 include_once 'C:/xampp/htdocs/l7grifes/model/Pessoa.php';
 include_once 'C:/xampp/htdocs/l7grifes/model/Endereco.php';

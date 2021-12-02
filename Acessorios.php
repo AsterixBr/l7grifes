@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'nav1.php';
+include_once 'nav.php';
 if (!isset($_SESSION['carrinho'])) {
     $_SESSION['carrinho'] = array();
     $_SESSION['contador'] = 0;

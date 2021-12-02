@@ -13,7 +13,7 @@ if ((!isset($_SESSION['emailp']) || !isset($_SESSION['nomep'])) ||
   exit;
 }
 */
-include_once 'nav1.php';
+include_once 'nav.php';
 
 include_once './controller/ProdutoController.php';
 include_once './model/Produto.php';

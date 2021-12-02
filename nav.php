@@ -10,7 +10,7 @@ function navBar()
     }
     $nav = "".'
 
-    <nav name="nav" id="nav" class="navbar navbar-expand-lg navbar-light bg-light ml-5">
+    <nav name="nav" id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
       <div class="container-fluid">
 
         <a href="l7grifes.php" class="navbar-brand">L7 Grifes</a>
@@ -46,7 +46,7 @@ function navBar()
 
 
         <li class="nav-item dropdown">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
             Painel de Controle
           </button>
           <ul class="dropdown-menu">
@@ -55,6 +55,7 @@ function navBar()
             <li><a class="dropdown-item" href="cadastroFornecedor.php">Cadastrar Fornecedor</a></li>
             <li><a class="dropdown-item" href="cadastroProduto.php">Cadastrar Produto</a></li>
             <li><a class="dropdown-item" href="marca.php">Cadastrar Marca</a></li>
+
           </ul>
         </li>
       </div>
