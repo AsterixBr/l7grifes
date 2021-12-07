@@ -49,21 +49,33 @@ include_once 'nav.php';
         </tfoot>
 
         <tbody>
-         <?php
-          $contador = count($produto);
-          if($contador == 0){
-            echo'<tr><td colspan="5">Não existem produtos no carrinho!</td></tr>';
-          }else{
-            foreach($linha as $linha => $produto):
-         ?>
-          <tr>
-            <td><?php echo $linha['nomeProduto'];?></td>
-            <td><input type="text" size="3" name="qtd[<?php echo $linha;?>]" value="<?php echo $linha['qtdEstoque'];?>"></td>
-            <td>R$ <?php echo number_format($linha['vlrVenda'], 2,',','.');?></td>
-            <td>R$ <?php echo number_format($linha['subtotal'], 2,',','.');?></td>
-            <td><a class="btn" href="remover.php">Remover</a></td>
-          </tr>
-            <?php endforeach; }?>
+        <?php
+        include_once 'DataBase/conectai.php';
+        $valorTotal = 0;
+        foreach ($_SESSION['carrinho'] as $key => $carrinho) {
+            if($carrinho < 1){
+                $_SESSION['carrinho'][$key] = null;
+                $key = 0;
+            }
+            if($key > 0){
+                $sql = "select * from produto where idProduto = '$key'";
+                $query = mysqli_query($db, $sql)or die(mysqli_error($db));
+                $linha = mysqli_fetch_array($query); 
+                do{
+                    $valorTotal += ($carrinho * (double)$linha['valor']);
+                ?>      
+                <tr>
+                    <td><img src="<?php echo $linha['imagem']; ?>" width="64"></td>
+                    <td><?php echo $linha["nome"]; ?></td>
+                    <td><?php echo "R$ ".$linha["valor"]; ?></td>
+                    <td><?php echo $carrinho; ?></td>
+                    <td><a href="esvaziarCarrinho.php?id=<?php echo $key; ?>" ><img src="img/deleta.ico" width="16"></a></td>
+                </tr>         
+            <?php
+                }while($linha = mysqli_fetch_array($query));
+            } 
+        }
+        ?>
          
         </tbody>
       </form>
