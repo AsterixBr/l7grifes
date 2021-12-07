@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'DataBase/conecta.php';
+include_once 'DataBase/conectai.php';
 foreach ($_SESSION['carrinho'] as $key => $carrinho) {
     $sql = "update produto set qtdEstoque = (qtdEstoque - '$carrinho') where idProduto = '$key'";
     mysqli_query($db, $sql)or die(mysqli_error($db));        

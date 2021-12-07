@@ -37,7 +37,7 @@ $btExcluir = FALSE;
     <div class="container-fluid">
         <div class="row" style="margin-top: 30px;">
             <div class="col-md-4">
-                <div class="card-header bg-primary text-center border
+                <div class="card-header bg-dark text-center border
                          text-white"><strong>Cadastro da Marca</strong>
                 </div>
                 <div class="card-body border">
@@ -147,10 +147,10 @@ $btExcluir = FALSE;
                             </div>
                             <br>
                             <div style="text-align: center;">
-                                <input type="submit" name="limpar" class="btn btn-warning btInput" value="Limpar">
-                                <input type="button" name="excluirMarca" class="btn btn-danger btInput" value="Excluir" data-bs-toggle="modal" data-bs-target="#exampleModal" <?php if ($btExcluir == FALSE) echo "disabled"; ?>>
-                                <input type="submit" name="atualizarMarca" class="btn btn-primary btInput" value="Atualizar" <?php if ($btAtualizar == FALSE) echo "disabled"; ?>>
-                                <button type="submit" name="cadastrarMarca" class="btn btn-success btnInput" <?php if ($btEnviar == TRUE) echo "disabled"; ?>>Adicionar</button>
+                                <input type="submit" name="limpar" class="btn btn-light btInput" value="Limpar">
+                                <input type="button" name="excluirMarca" class="btn btn-warning btInput" value="Excluir" data-bs-toggle="modal" data-bs-target="#exampleModal" <?php if ($btExcluir == FALSE) echo "disabled"; ?>>
+                                <input type="submit" name="atualizarMarca" class="btn btn-secondary btInput" value="Atualizar" <?php if ($btAtualizar == FALSE) echo "disabled"; ?>>
+                                <button type="submit" name="cadastrarMarca" class="btn btn-success btInput" <?php if ($btEnviar == TRUE) echo "disabled"; ?>>Adicionar</button>
                             </div>
                             <!-- Modal para excluir -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -166,8 +166,8 @@ $btExcluir = FALSE;
                                             <h5>Deseja Excluir?</h5>
                                         </div>
                                         <div class="modal-footer">
-                                            <input type="submit" name="excluirMarca" class="btn btn-success " value="Sim">
-                                            <input type="submit" class="btn btn-light btInput" name="limpar" value="Não">
+                                            <input type="submit" name="excluirMarca" class="btn btn-dark " value="Sim">
+                                            <input type="submit" class="btn btn-dark" name="limpar" value="Não">
                                         </div>
                                     </div>
                                 </div>
@@ -207,10 +207,10 @@ $btExcluir = FALSE;
                                             <td><?php print_r($lf->getRepresentante()); ?></td>
                                             <td><?php print_r($lf->getEmailRepresentante()); ?></td>
 
-                                            <td><a href="Marca.php?id=<?php echo $lf->getIdMarca(); ?>" class="btn btn-primary">
+                                            <td><a href="Marca.php?id=<?php echo $lf->getIdMarca(); ?>" class="btn btn-dark">
                                                     Editar</a>
                                                 </form>
-                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>">
+                                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>">
                                                     Excluir</button>
                                             </td>
                                         </tr>
@@ -229,8 +229,8 @@ $btExcluir = FALSE;
                                                             <input type="hidden" name="ide" value="<?php echo $lf->getIdMarca(); ?>">
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="submit" name="excluir" class="btn btn-primary">Sim</button>
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                        <button type="submit" name="excluir" class="btn btn-dark">Sim</button>
+                                                        <button type="reset" class="btn btn-dark" data-bs-dismiss="modal">Não</button>
                                                     </div>
                                                     </form>
                                                 </div>

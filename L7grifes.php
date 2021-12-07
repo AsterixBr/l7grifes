@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'nav.php';
+require_once './DataBase/conecta.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -128,16 +129,12 @@ include_once 'nav.php';
       </div>
       </div>
     </section>
+    
     <section class="wrapper">
       <div class="container-fostrap">
         <div>
-          <h1 class="heading">
-            Loja L7 Grifes
-          </h1>
-        </div>
-        <div>
           <h2>
-            roupas masculinas
+            Roupas masculinas
           </h2>
         </div>
         <div class="content">
@@ -217,7 +214,7 @@ include_once 'nav.php';
         <div>
 
           <h2 class="heading">
-            roupas femininas
+            Roupas femininas
           </h2>
         </div>
         <div class="content">
@@ -297,7 +294,7 @@ include_once 'nav.php';
         <div>
 
           <h2 class="heading">
-            acessorios
+            Acessórios
           </h2>
         </div>
         <div class="content">

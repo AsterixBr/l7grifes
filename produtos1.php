@@ -24,7 +24,7 @@ include_once 'nav.php';
         <div class="col-md-12">
         <?php
         $idproduto = $_GET['produto'];
-        include_once 'DataBase/conecta.php';
+        include_once './DataBase/conecta.php';
         $sql = "select * from produto where idProduto = '$idproduto' ";
         $query = mysqli_query($db, $sql)or die(mysqli_error($db));
         $linhas = mysqli_fetch_array($query);
@@ -33,7 +33,7 @@ include_once 'nav.php';
             ?>
             <td style="padding: 10px;">
             <img src="<?php echo $linhas['imagem']; ?>" style="padding: 5px; border: 1px solid blue;" width="200">
-            <br><?php echo $linhas["nome"]; ?><br><?php echo $linhas["valor"]; ?><br>
+            <br><?php echo $linhas["nomeProduto"]; ?><br><?php echo $linhas["vlrVenda"]; ?><br>
             <form method="get" action="produtos2.php">
                 <input type="hidden" name="produto2" value="<?php echo $linhas['idProduto'];?>">
                 <input type="submit" value="Comprar" class="btn btn-default"/>

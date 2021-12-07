@@ -8,12 +8,12 @@ function navBar()
     //$perfil_usuario = $_SESSION['perfilc'];
     //$teste = "(61) 98494-1352";
 
-    $nav = "
+    $nav1 = "
             ";
    
 
-    if ($_SESSION['perfilp'] == "Cliente") {
-        $nav .= '<nav name="nav" id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
+    if ($_SESSION['perfilp'] == "Cliente" || $_SESSION['perfilp'] == "") {
+        $nav1 .= '<nav name="nav" id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
         <div class="container-fluid">
   
           <a href="l7grifes.php" class="navbar-brand">L7 Grifes</a>
@@ -45,17 +45,15 @@ function navBar()
             </div>
           </div>
           <div>
-						<a href="Login.html" >
+						<a href="Login1.php" >
 							LOGIN/CADASTRO
 						</a>
           </nav>';
 
     } 
     elseif ($_SESSION['perfilp'] == "Administrador") {
-      $nav .= ' <li class="nav-item dropdown">
-      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Painel de Controle
-      </button>
+      $nav1 .= ' <li class="nav-item dropdown">
+
       <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="sessionDestroy.php">Sair</a></li>
         <li><a class="dropdown-item" href="Cadastro.php">Cadastrar Funcionário</a></li>
@@ -65,7 +63,7 @@ function navBar()
       </ul>
     </li>';
     }elseif ($_SESSION['perfilp'] == "Funcionário") {
-        $nav .= ' <li class="nav-item dropdown">
+        $nav1 .= ' <li class="nav-item dropdown">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           Painel de Controle
         </button>
@@ -80,7 +78,7 @@ function navBar()
     }
 
 
-    return $nav;
+    return $nav1;
 }
 ?>
 <?php ob_end_flush(); ?>

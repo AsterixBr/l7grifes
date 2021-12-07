@@ -2,6 +2,6 @@
 ob_start();
 session_start();
 session_destroy();
-header("Location: login1.php");
+header("Location: index.php");
 exit;
 ob_end_flush();

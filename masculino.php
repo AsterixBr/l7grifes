@@ -5,6 +5,11 @@ if (!isset($_SESSION['carrinho'])) {
     $_SESSION['carrinho'] = array();
     $_SESSION['contador'] = 0;
 }
+include_once __DIR__.'/Controller/ProdutoController.php';
+include_once __DIR__.'/model/Produto.php';
+$produto = new Produto();
+$pc = new ProdutoController();
+$listaProdutos = $pc->listarProdutos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -52,18 +57,27 @@ if (!isset($_SESSION['carrinho'])) {
         <div class="content">
           <div class="container">
             <div class="row">
+              <?php
+                if($listaProdutos){
+                  foreach($listaProdutos as $lista){
+                    $imagem = $lista->getImagem();
+                    //$descricao = $lista->getDescricao();
+                    $nomeProduto = $lista->getNomeProduto();
+                    $vlrVenda = $lista->getVlrVenda();
+
+              ?>
               <div class="col-xs-12 col-sm-4">
                 <div class="card">
                   <a class="img-card" href="#">
-                    <img src="img/219533060_502700267666442_4230802467710611631_n.jpg" />
+                    <img src="<?php echo $imagem;?>" />
                   </a>
                   <div class="card-content">
                     <h4 class="card-title">
-                      <a href="#"> Nome do produto
+                      <a href="#"> <?php echo $nomeProduto;?>
                       </a>
                     </h4>
                     <p class="">
-                      descrição do produto
+                      Descrição do produto.
                     </p>
                   </div>
                   <div class="card-read-more">
@@ -73,112 +87,11 @@ if (!isset($_SESSION['carrinho'])) {
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/173098479_2650349241923004_5950617935057221691_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="#">Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/156961516_111509954303702_9006739308221494341_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="#">Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/156961516_111509954303702_9006739308221494341_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="#">Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/156961516_111509954303702_9006739308221494341_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="#">Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/156961516_111509954303702_9006739308221494341_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="#">Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
+              <?php
+                  }
+                }
+              ?>
+              
             </div>
           </div>
         </div>
