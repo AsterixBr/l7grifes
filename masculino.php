@@ -51,7 +51,7 @@ $listaProdutos = $pc->listarProdutos();
       <div class="container-fostrap">
         <div>
           <h1 class="heading">
-          Roupas masculinas
+          Produtos
           </h1>
         </div>
         <div class="content">
@@ -64,9 +64,11 @@ $listaProdutos = $pc->listarProdutos();
                     //$descricao = $lista->getDescricao();
                     $nomeProduto = $lista->getNomeProduto();
                     $vlrVenda = $lista->getVlrVenda();
+                    $qtdEstoque = $lista->getQtdEstoque();
+                    $tamanho = $lista->getTamanho();
 
               ?>
-              <div class="col-xs-12 col-sm-4">
+              <div class="col-xs-8 col-sm-4">
                 <div class="card">
                   <a class="img-card" href="#">
                     <img src="<?php echo $imagem;?>" />
@@ -76,8 +78,14 @@ $listaProdutos = $pc->listarProdutos();
                       <a href="#"> <?php echo $nomeProduto;?>
                       </a>
                     </h4>
-                    <p class="">
-                      Descrição do produto.
+                    <p class="card-title">
+                       Tamanho: <?php echo $tamanho;?>
+                    </p>
+                    <p class="card-title">
+                       Quantidade: <?php echo $qtdEstoque;?>
+                    </p>
+                    <p class="card-title">
+                        R$ <?php echo $vlrVenda;?>
                     </p>
                   </div>
                   <div class="card-read-more">
