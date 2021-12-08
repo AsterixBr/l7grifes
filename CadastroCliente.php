@@ -44,12 +44,10 @@ $btExcluir = FALSE;
 </head>
 
 <body>
-    <header style="color: white;">
     <?php 
       $nav = navBar();
       echo $nav;
     ?>
-    </header>
 
 
     <div class="container-fluid">

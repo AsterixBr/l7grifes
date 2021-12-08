@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once 'nav.php';
-
 include_once 'C:/xampp/htdocs/l7grifes/Controller/FornecedorController.php';
 include_once 'C:/xampp/htdocs/l7grifes/model/Fornecedor.php';
 include_once 'C:/xampp/htdocs/l7grifes/model/Mensagem.php';

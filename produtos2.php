@@ -10,5 +10,5 @@ if(!isset($_SESSION['carrinho'][$idp])){
 }
 echo "";
 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-        URL='l7grifes.html'\">";
+        URL='l7grifes.php'\">";
 

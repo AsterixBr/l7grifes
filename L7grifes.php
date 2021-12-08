@@ -2,6 +2,11 @@
 session_start();
 include_once 'nav.php';
 require_once './DataBase/conecta.php';
+include_once __DIR__.'/Controller/ProdutoController.php';
+include_once __DIR__.'/model/Produto.php';
+$produto = new Produto();
+$pc = new ProdutoController();
+$listaProdutos = $pc->listarProdutos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -49,38 +54,11 @@ require_once './DataBase/conecta.php';
 </head>
 
 <body>
-  <nav name="nav" id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark ml-5">
-    <div class="container-fluid">
-
-      <a href="l7grifes.php" class="navbar-brand">L7 Grifes</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse show" id="navbarCollapse" style>
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Produtos
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="masculino.php">Masculinos</a></li>
-            <li><a class="dropdown-item" href="feminino.php">Femininos</a></li>
-            <li><a class="dropdown-item" href="Acessorios.php">Acessórios</a></li>
-          </ul>
-          </li>
-          <li class="nav-item">
-            <a href="carrinho.php" class="nav-link">Carrinho</a>
-          </li>
-
-        </ul>
-        <form class="d-flex" style="margin-right:750px;">
-          <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-        </form>
-      </div>
-
-    </div>
-  </nav>
+<?php
+	$nav = navBar();
+	echo $nav;
+	?>
+  
 
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -130,108 +108,45 @@ require_once './DataBase/conecta.php';
       </div>
     </section>
     
-    <section class="wrapper">
+    <  <section class="wrapper">
       <div class="container-fostrap">
         <div>
-          <h2>
-            Roupas masculinas
-          </h2>
+          <h1 class="heading">
+          Produtos
+          </h1>
         </div>
         <div class="content">
           <div class="container">
             <div class="row">
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/219533060_502700267666442_4230802467710611631_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="#"> Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/173098479_2650349241923004_5950617935057221691_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="#">Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/156961516_111509954303702_9006739308221494341_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="#">Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="wrapper">
-      <div class="container-fostrap">
-        <div>
+              <?php
+                if($listaProdutos){
+                  foreach($listaProdutos as $lista){
+                    $imagem = $lista->getImagem();
+                    //$descricao = $lista->getDescricao();
+                    $nomeProduto = $lista->getNomeProduto();
+                    $vlrVenda = $lista->getVlrVenda();
+                    $qtdEstoque = $lista->getQtdEstoque();
+                    $tamanho = $lista->getTamanho();
 
-          <h2 class="heading">
-            Roupas femininas
-          </h2>
-        </div>
-        <div class="content">
-          <div class="container">
-            <div class="row">
-              <div class="col-xs-12 col-sm-4">
+              ?>
+              <div class="col-xs-8 col-sm-4">
                 <div class="card">
                   <a class="img-card" href="#">
-                    <img src="img/219533060_502700267666442_4230802467710611631_n.jpg" />
+                    <img src="<?php echo $imagem;?>" />
                   </a>
                   <div class="card-content">
                     <h4 class="card-title">
-                      <a href="#"> Nome do produto
+                      <a href="#"> <?php echo $nomeProduto;?>
                       </a>
                     </h4>
-                    <p class="">
-                      descrição do produto
+                    <p class="card-title">
+                       Tamanho: <?php echo $tamanho;?>
+                    </p>
+                    <p class="card-title">
+                       Quantidade: <?php echo $qtdEstoque;?>
+                    </p>
+                    <p class="card-title">
+                        R$ <?php echo $vlrVenda;?>
                     </p>
                   </div>
                   <div class="card-read-more">
@@ -241,129 +156,11 @@ require_once './DataBase/conecta.php';
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/173098479_2650349241923004_5950617935057221691_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="#">Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/156961516_111509954303702_9006739308221494341_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="img/156961516_111509954303702_9006739308221494341_n.jpg">Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="wrapper">
-      <div class="container-fostrap">
-        <div>
-
-          <h2 class="heading">
-            Acessórios
-          </h2>
-        </div>
-        <div class="content">
-          <div class="container">
-            <div class="row">
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/219533060_502700267666442_4230802467710611631_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="carrinho.php"> Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/173098479_2650349241923004_5950617935057221691_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="#">Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="img/156961516_111509954303702_9006739308221494341_n.jpg" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="img/156961516_111509954303702_9006739308221494341_n.jpg">Nome do produto
-                      </a>
-                    </h4>
-                    <p class="">
-                      descrição do produto
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
-                    </a>
-                  </div>
-                </div>
-              </div>
+              <?php
+                  }
+                }
+              ?>
+              
             </div>
           </div>
         </div>

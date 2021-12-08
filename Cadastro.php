@@ -42,9 +42,9 @@ $btExcluir = FALSE;
 </head>
 
 <body>
-<?php 
-      $nav = navBar();
-      echo $nav;
+<?php
+    $nav = navBar();
+    echo $nav;
     ?>
 
 

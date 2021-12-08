@@ -4,7 +4,7 @@ if (!isset($_SESSION['carrinho'])) {
   $_SESSION['carrinho'] = array();
   $_SESSION['contador'] = 0;
 }
-include_once 'nav.php';
+include_once 'nav1.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -62,12 +62,12 @@ include_once 'nav.php';
                 $query = mysqli_query($db, $sql)or die(mysqli_error($db));
                 $linha = mysqli_fetch_array($query); 
                 do{
-                    $valorTotal += ($carrinho * (double)$linha['valor']);
+                    $valorTotal += ($carrinho * (double)$linha['vlrVenda']);
                 ?>      
                 <tr>
-                    <td><img src="<?php echo $linha['imagem']; ?>" width="64"></td>
-                    <td><?php echo $linha["nome"]; ?></td>
-                    <td><?php echo "R$ ".$linha["valor"]; ?></td>
+                    <td><img src="<?php echo $linha['Imagem']; ?>" width="64"></td>
+                    <td><?php echo $linha["nomeProduto"]; ?></td>
+                    <td><?php echo "R$ ".$linha["vlrVenda"]; ?></td>
                     <td><?php echo $carrinho; ?></td>
                     <td><a href="esvaziarCarrinho.php?id=<?php echo $key; ?>" ><img src="img/deleta.ico" width="16"></a></td>
                 </tr>         

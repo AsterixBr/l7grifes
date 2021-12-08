@@ -24,7 +24,7 @@ include_once 'nav.php';
         <div class="col-md-12">
         <?php
         $idproduto = $_GET['produto'];
-        include_once './DataBase/conecta.php';
+        include_once './DataBase/conectai.php';
         $sql = "select * from produto where idProduto = '$idproduto' ";
         $query = mysqli_query($db, $sql)or die(mysqli_error($db));
         $linhas = mysqli_fetch_array($query);

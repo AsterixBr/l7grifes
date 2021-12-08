@@ -27,9 +27,9 @@ $btExcluir = FALSE;
     <title>Marca</title>
 </head>
 <header style="color: white;">
-<?php 
-      $nav = navBar();
-      echo $nav;
+<?php
+    $nav = navBar();
+    echo $nav;
     ?>
 </header>
 

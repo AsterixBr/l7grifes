@@ -59,9 +59,9 @@ $btExcluir = FALSE;
 
 
 <body>
-<?php 
-      $nav = navBar();
-      echo $nav;
+<?php
+    $nav = navBar();
+    echo $nav;
     ?>
   <div class="container-fluid">
     <div class="row" style="margin-top: 30px;">
