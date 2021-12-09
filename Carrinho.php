@@ -1,10 +1,13 @@
 <?php
 session_start();
-if (!isset($_SESSION['carrinho'])) {
-  $_SESSION['carrinho'] = array();
-  $_SESSION['contador'] = 0;
-}
+
 include_once 'nav1.php';
+include_once __DIR__.'/Controller/ProdutoController.php';
+include_once __DIR__.'/model/Produto.php';
+$produto = new Produto();
+$pc = new ProdutoController();
+$listaProdutos = $pc->listarProdutos();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,28 +32,18 @@ include_once 'nav1.php';
 
       <thead>
         <tr>
+          <td>Imagem</td>
           <td>Produto</td>
           <td>Quantidade</td>
           <td>Preço</td>
-          <td>Subtotal</td>
           <td>Remover</td>
         </tr>
       </thead>
       <form action="" method="post">
-        <tfoot>
-          <tr>
-            <td colspan="4">Valor Total:</td>
-            <td>R$ <?php echo number_format($total, 2, ',','.');?></td>
-          </tr>
-          <tr>
-            <td><input class="btn reload" type="submit" name="atualizar" value="Atualizar Carrinho"></td>
-            <td><a class="btn" href="l7grifes.php">Continuar Comprando</a></td>
-          </tr>
-        </tfoot>
 
         <tbody>
-        <?php
-        include_once 'DataBase/conectai.php';
+          <?php
+        include_once './DataBase/conectai.php';
         $valorTotal = 0;
         foreach ($_SESSION['carrinho'] as $key => $carrinho) {
             if($carrinho < 1){
@@ -66,16 +59,40 @@ include_once 'nav1.php';
                 ?>      
                 <tr>
                     <td><img src="<?php echo $linha['Imagem']; ?>" width="64"></td>
-                    <td><?php echo $linha["nomeProduto"]; ?></td>
+                    <td><?php echo $linha['nomeProduto']; ?></td>
+                    <td><?php echo $linha["qtdEstoque"]; ?></td>
                     <td><?php echo "R$ ".$linha["vlrVenda"]; ?></td>
-                    <td><?php echo $carrinho; ?></td>
-                    <td><a href="esvaziarCarrinho.php?id=<?php echo $key; ?>" ><img src="img/deleta.ico" width="16"></a></td>
+                    <td><a href="esvaziarCarrinho.php?id=<?php echo $key; ?>" ><img src="img/remover.png" width="16"></a></td>
                 </tr>         
             <?php
                 }while($linha = mysqli_fetch_array($query));
             } 
         }
         ?>
+            </table>
+        </div>
+    </div>
+      <div class="row">
+          <div class="col-md-12">
+              <?php
+                   if($_SESSION['contador'] > 0){
+                       echo "Total dos produtos: ". $_SESSION['contador']." - Valor Total: R$ " . $valorTotal;  
+              ?>
+          </div>
+          <div class="col-md-12">
+              <a href="finalizarCompra.php" class="btn">Finalizar Compra</a>
+          </div>
+          <?php
+                   }else{
+          ?>
+          <div class="col-md-12">
+              <a href="masculino.php" class="btn">Comprar</a>
+          </div>
+          <?php
+                   }
+          ?>
+      </div>
+  </div>
          
         </tbody>
       </form>

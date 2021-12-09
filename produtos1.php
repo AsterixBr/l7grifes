@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'nav.php';
+include_once 'nav1.php';
 ?>
 <html>
   <head>
@@ -32,8 +32,12 @@ include_once 'nav.php';
         do{
             ?>
             <td style="padding: 10px;">
-            <img src="<?php echo $linhas['imagem']; ?>" style="padding: 5px; border: 1px solid blue;" width="200">
-            <br><?php echo $linhas["nomeProduto"]; ?><br><?php echo $linhas["vlrVenda"]; ?><br>
+            <img src="<?php echo $linhas['Imagem']; ?>" style="padding: 5px; border: 1px solid blue;" width="200">
+            <br>Nome :<?php echo $linhas["nomeProduto"]; ?><br>
+            <br>Quantidade :<?php echo $linhas["qtdEstoque"]; ?><br>
+            <br>Medidas: <?php echo $linhas["tamanho"]; ?><br>
+            <br>R$ <?php echo $linhas["vlrVenda"]; ?><br>
+            
             <form method="get" action="produtos2.php">
                 <input type="hidden" name="produto2" value="<?php echo $linhas['idProduto'];?>">
                 <input type="submit" value="Comprar" class="btn btn-default"/>

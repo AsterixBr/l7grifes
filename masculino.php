@@ -87,9 +87,9 @@ $listaProdutos = $pc->listarProdutos();
                         R$ <?php echo $vlrVenda; ?>
                       </p>
                     </div>
-                      <form method="get" action="Carrinho.php">
-                        <input type="hidden" name="produto" value="<?php echo $$idProduto['idProduto']; ?>">
-                        <input type="submit" value="Comprar" class="btn btn-default" name="addCarrinho" />
+                      <form method="get" action="produtos1.php">
+                        <input type="hidden" name="produto" value="<?php echo $idProduto ?>">
+                        <input type="submit" value="Comprar" class="btn btn-dark" name="add" />
                       </form>
                   </div>
                 </div>

@@ -108,64 +108,64 @@ $listaProdutos = $pc->listarProdutos();
       </div>
     </section>
     
-    <  <section class="wrapper">
-      <div class="container-fostrap">
-        <div>
-          <h1 class="heading">
+    <section class="wrapper">
+    <div class="container-fostrap">
+      <div>
+        <h1 class="heading">
           Produtos
-          </h1>
-        </div>
-        <div class="content">
-          <div class="container">
-            <div class="row">
-              <?php
-                if($listaProdutos){
-                  foreach($listaProdutos as $lista){
-                    $imagem = $lista->getImagem();
-                    //$descricao = $lista->getDescricao();
-                    $nomeProduto = $lista->getNomeProduto();
-                    $vlrVenda = $lista->getVlrVenda();
-                    $qtdEstoque = $lista->getQtdEstoque();
-                    $tamanho = $lista->getTamanho();
+        </h1>
+      </div>
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <?php
+            if ($listaProdutos) {
+              foreach ($listaProdutos as $lista) {
+                $imagem = $lista->getImagem();
+                //$descricao = $lista->getDescricao();
+                $nomeProduto = $lista->getNomeProduto();
+                $vlrVenda = $lista->getVlrVenda();
+                $qtdEstoque = $lista->getQtdEstoque();
+                $tamanho = $lista->getTamanho();
+                $idProduto = $lista->getIdProduto();
 
-              ?>
-              <div class="col-xs-8 col-sm-4">
-                <div class="card">
-                  <a class="img-card" href="#">
-                    <img src="<?php echo $imagem;?>" />
-                  </a>
-                  <div class="card-content">
-                    <h4 class="card-title">
-                      <a href="#"> <?php echo $nomeProduto;?>
-                      </a>
-                    </h4>
-                    <p class="card-title">
-                       Tamanho: <?php echo $tamanho;?>
-                    </p>
-                    <p class="card-title">
-                       Quantidade: <?php echo $qtdEstoque;?>
-                    </p>
-                    <p class="card-title">
-                        R$ <?php echo $vlrVenda;?>
-                    </p>
-                  </div>
-                  <div class="card-read-more">
-                    <a href="#" class="btn btn-link btn-block">
-                      compra
+            ?>
+                <div class="col-xs-8 col-sm-4">
+                  <div class="card">
+                    <a class="img-card" href="#">
+                      <img src="<?php echo $imagem; ?>" />
                     </a>
+                    <div class="card-content">
+                      <h4 class="card-title">
+                        <a href="#"> <?php echo $nomeProduto; ?>
+                        </a>
+                      </h4>
+                      <p class="card-title">
+                        Tamanho: <?php echo $tamanho; ?>
+                      </p>
+                      <p class="card-title">
+                        Quantidade: <?php echo $qtdEstoque; ?>
+                      </p>
+                      <p class="card-title">
+                        R$ <?php echo $vlrVenda; ?>
+                      </p>
+                    </div>
+                      <form method="get" action="Carrinho.php?add=carrinho&id="<?php echo $idProduto?>>
+                        <input type="hidden" name="produto" value="<?php echo $idProduto ?>">
+                        <input type="submit" value="Comprar" class="btn btn-dark" name="add" />
+                      </form>
                   </div>
                 </div>
-              </div>
-              <?php
-                  }
-                }
-              ?>
-              
-            </div>
+            <?php
+              }
+            }
+            ?>
+
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
   </main>
   <footer>
